@@ -4,16 +4,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Monster")
+@RequestMapping("/monster")
 public class MonsterController {
 
-    @RequestMapping("list")
+    @RequestMapping("/list")
     String showMonsters(){
 
         return "listMonsters";
     }
 
-    @RequestMapping("Create")
+    @RequestMapping("/create")
     String createMonster(){
 
         return "createMonster";

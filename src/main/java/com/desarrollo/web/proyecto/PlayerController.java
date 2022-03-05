@@ -4,15 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Player")
+@RequestMapping("/player")
 public class PlayerController {
     
-    @RequestMapping("list")
+    @RequestMapping("/list")
     String showPlayers(){
 
         return "listPlayers";
     }
-    @RequestMapping("Create")
+    @RequestMapping("/create")
     String createPlayer(){
 
         return "createPlayer";

@@ -4,16 +4,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Room")
+@RequestMapping("/room")
 public class RoomController {
    
-    @RequestMapping("list")
+    @RequestMapping("/list")
     String showRooms(){
 
         return "listRooms";
     }
 
-    @RequestMapping("Create")
+    @RequestMapping("/create")
     String createRoom(){
 
         return "createRoom";
