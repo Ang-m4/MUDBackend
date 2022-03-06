@@ -33,8 +33,7 @@ public class ProyectoApplication {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		TypeReference<List<Monster>> typeReference = new TypeReference<List<Monster>>(){};
 		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/monstruos.json");
-
-        
+       
 		List<Monster> monsterList = new ArrayList<>();
         
         try {

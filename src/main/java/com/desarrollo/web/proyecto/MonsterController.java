@@ -21,7 +21,7 @@ public class MonsterController {
     @RequestMapping("/create")
     String createMonster(){
 
-        System.out.println(monsters.get(0).getName());
+        System.out.println(monsters.toString());
         return "createMonster";
     }
 

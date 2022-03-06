@@ -13,6 +13,7 @@ public class Monster extends Entity {
     private ArrayList<String> category;
     private String examine;
     private String wiki_url;
+
     
     public Monster(){super();};
 
@@ -85,4 +86,13 @@ public class Monster extends Entity {
         this.wiki_url = wiki_url;
     }
 
+    @Override
+    public String toString() {
+        return "\nMonster [name=" + this.getName() +", attack_level=" + attack_level + ", category=" + category + ", defence_slash=" + defence_slash
+                + ", examine=" + examine + ", hitpoints=" + hitpoints + ", last_updated=" + last_updated + ", size="
+                + size + "]";
+    }
+
+
+    
 }

@@ -23,6 +23,8 @@ public class RoomController {
 
     @RequestMapping("/create")
     String createRoom(){
+        System.out.println(items.get(0).getName());
+        System.out.println(decoItems.get(0).getName());
         return "createRoom";
     }
 
