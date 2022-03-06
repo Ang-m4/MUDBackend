@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
 
@@ -9,8 +10,8 @@
 
     <div>
         <ul>
-            <li th:each="item: ${items}">
-                <div>
+            <li th:each="item: ${items}" class="list_item">
+                <div class="">
                     Nombre: <span th:text="${item.name}" ></span>
                 </div>
 

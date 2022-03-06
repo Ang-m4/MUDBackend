@@ -5,6 +5,7 @@ import com.desarrollo.web.proyecto.Model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -17,12 +18,12 @@ public class RoomController {
     @Autowired
     ArrayList<DecorativeItem> decoItems;
    
-    @RequestMapping("/list")
+    @GetMapping("/list")
     String showRooms(){
         return "listRooms";
     }
-
-    @RequestMapping("/create")
+    
+    @GetMapping("/create")
     String createRoom(){
         return "createRoom";
     }
