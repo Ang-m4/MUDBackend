@@ -12,9 +12,11 @@ public class PlayerController {
 
         return "listPlayers";
     }
+    
     @RequestMapping("/create")
     String createPlayer(){
 
         return "createPlayer";
     }
+
 }   

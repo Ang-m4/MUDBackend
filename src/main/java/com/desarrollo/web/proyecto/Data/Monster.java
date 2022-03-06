@@ -1,11 +1,11 @@
 package com.desarrollo.web.proyecto.Data;
 
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class Monster extends Entity {
     
-    private Date last_update;
+    private String last_updated;
     private int attack_level;
     private int defence_slash;
     private int size;
@@ -14,10 +14,12 @@ public class Monster extends Entity {
     private String examine;
     private String wiki_url;
     
-    public Monster(int id, String name, Date last_update, int attack_level, int defence_slash, int size, int hitpoints,
+    public Monster(){super();};
+
+    public Monster(int id, String name, String last_updated, int attack_level, int defence_slash, int size, int hitpoints,
            ArrayList<String> category, String examine, String wiki_url) {
         super(id, name);
-        this.last_update = last_update;
+        this.last_updated = last_updated;
         this.attack_level = attack_level;
         this.defence_slash = defence_slash;
         this.size = size;
@@ -27,11 +29,11 @@ public class Monster extends Entity {
         this.wiki_url = wiki_url;
     }
 
-    public Date getLast_update() {
-        return last_update;
+    public String getLast_update() {
+        return last_updated;
     }
-    public void setLast_update(Date last_update) {
-        this.last_update = last_update;
+    public void setLast_update(String last_updated) {
+        this.last_updated = last_updated;
     }
 
     public int getAttack_level() {
