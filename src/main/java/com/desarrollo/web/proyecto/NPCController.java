@@ -1,20 +1,23 @@
 package com.desarrollo.web.proyecto;
+
 import java.util.ArrayList;
-import com.desarrollo.web.proyecto.Data.Monster;
+import com.desarrollo.web.proyecto.Model.NPC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/monster")
-public class MonsterController {
+public class NPCController {
 
     @Autowired
-    ArrayList<Monster> monsters;
-
+    ArrayList<NPC> monsters;
+    
     @RequestMapping("/list")
-    String showMonsters(){
+    String showMonsters(Model model){
 
+        model.addAttribute("monsters",monsters);
         return "listMonsters";
     }
 
@@ -25,6 +28,4 @@ public class MonsterController {
         return "createMonster";
     }
 
-
-    
 }

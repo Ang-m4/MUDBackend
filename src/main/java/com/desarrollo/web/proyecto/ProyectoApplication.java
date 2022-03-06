@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.desarrollo.web.proyecto.Data.*;
+import com.desarrollo.web.proyecto.Model.*;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -27,14 +27,14 @@ public class ProyectoApplication {
 	}
 
 	@Bean
-    ArrayList<Monster> loadMonsters() {
+    ArrayList<NPC> loadMonsters() {
 		
 		ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		TypeReference<List<Monster>> typeReference = new TypeReference<List<Monster>>(){};
+		TypeReference<List<NPC>> typeReference = new TypeReference<List<NPC>>(){};
 		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/monstruos.json");
        
-		List<Monster> monsterList = new ArrayList<>();
+		List<NPC> monsterList = new ArrayList<>();
         
         try {
             
@@ -50,7 +50,7 @@ public class ProyectoApplication {
             
             e.printStackTrace();
         }
-		ArrayList<Monster> monsters = new ArrayList<>();
+		ArrayList<NPC> monsters = new ArrayList<>();
 		monsters.addAll(monsterList);
 
 		return monsters;
