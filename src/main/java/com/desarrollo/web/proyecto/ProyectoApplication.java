@@ -67,9 +67,9 @@ public class ProyectoApplication {
 		List<Item> itemList = new ArrayList<>();
         
         try {
-            
+
             itemList = (mapper.readValue(inputStream,typeReference));
-            
+
         } catch (StreamReadException e) {
             
             e.printStackTrace();

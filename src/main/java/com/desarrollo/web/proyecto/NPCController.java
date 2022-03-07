@@ -18,6 +18,10 @@ public class NPCController {
     @GetMapping("/list")
     String showMonsters(Model model){
 
+        NPC a = new NPC();
+        System.out.println("Monsters" + monsters.size());
+        a.setName("Maria");
+        monsters.add(a);
         model.addAttribute("monsters",monsters);
         return "listMonsters";
     }
@@ -25,7 +29,7 @@ public class NPCController {
     @GetMapping("/create")
     String createMonster(){
 
-        System.out.println(monsters.toString());
+        System.out.println("Monsters" + monsters.size());
         return "createMonster";
     }
 
