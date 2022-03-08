@@ -26,9 +26,6 @@ public class ItemController {
     @Autowired
     ArrayList<Item> items;
 
-    @Autowired
-    ArrayList<DecorativeItem> decoItems;
-
     @GetMapping("/list")
     String showItems(Model model) {
 
@@ -67,8 +64,6 @@ public class ItemController {
     @PostMapping("/save")
     String saveData(@ModelAttribute Item item, Model model) {
 
-    
-
         if(getById(item.getId()) != null){
 
             items.set(findById(item.getId()), item);
@@ -80,14 +75,11 @@ public class ItemController {
                 items.add(item);
 
             }else{
-                
                 items.set(findByName(item.getName()), item);
-
             }
 
-
         }        
-        
+    
 
         return "redirect:/item/list";
     }

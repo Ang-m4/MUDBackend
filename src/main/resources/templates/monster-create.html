@@ -6,8 +6,9 @@
 </head>
 
 <body>
+
     <div class="main-container">
-        <h1 th:text="'Editando: '+ ${selected.name}"></h1>
+        <h1 th:text="'Create: '"></h1>
 
         <form action="#" th:action="@{/monster/save}" th:object="${selected}" method="post">
 
@@ -67,7 +68,13 @@
             </div>
 
         </form>
+
+        </form>
+
+
+
     </div>
+
 
 
 

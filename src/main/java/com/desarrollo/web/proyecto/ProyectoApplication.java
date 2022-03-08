@@ -36,8 +36,7 @@ public class ProyectoApplication {
 		List<NPC> monsterList = new ArrayList<>();
 
         try {
-            monsterList = (mapper.readValue(inputStream,typeReference));
-            
+            monsterList = (mapper.readValue(inputStream,typeReference));     
         } catch (StreamReadException e) {
             
             e.printStackTrace();
@@ -88,7 +87,9 @@ public class ProyectoApplication {
     ArrayList<DecorativeItem> loadDecorativeItems() {
 		
 		ObjectMapper mapper = new ObjectMapper();
+
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
 		TypeReference<List<DecorativeItem>> typeReference = new TypeReference<List<DecorativeItem>>(){};
 		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/objetos-decorativos.json");
 
@@ -113,6 +114,7 @@ public class ProyectoApplication {
 		return items;
 	}
 	
+
     @Bean
     ArrayList<Player> loadPlayers(){
 

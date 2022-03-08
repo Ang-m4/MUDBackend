@@ -1,0 +1,25 @@
+package com.desarrollo.web.proyecto;
+
+import java.util.ArrayList;
+
+import com.desarrollo.web.proyecto.Model.DecorativeItem;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/decoItem")
+
+public class DecoItemsController {
+
+    @Autowired
+    ArrayList<DecorativeItem> decoItems;
+
+    Logger log = LoggerFactory.getLogger(getClass());
+
+    
+
+}
