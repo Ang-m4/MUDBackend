@@ -1,4 +1,37 @@
-.list_item {
+.main-container{
+    margin-left: 30px;
+}
+
+.list_item{
     margin-top: 20px;
-    
+}
+
+.list{
+    overflow: auto;
+    height: 400px;
+    width: 600px;
+    border: 2px solid black ;
+}
+
+.edit-field{
+    margin-top: 10px;
+}
+
+.edit-field label{
+    font-weight: bold;
+    color: blue;
+}
+
+.show-field{
+
+    margin-top: 10px;
+}
+
+.show-field label{
+    font-weight: bold;
+    color: blue;
+}
+
+button{
+    margin-top: 10px;
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1 th:text="'ITEM: '+ ${selected.name}"></h1>
+
+            <div class="show-field">
+                <label for="selected-id">Id:</label>
+                <span th:text="${selected.id}"></span>
+            </div>
+            
+            <div class="show-field">
+                <label for="selected-name">Name:</label>
+                <span type="text" th:text="${selected.name}"></span>
+            </div>
+
+            <div class="show-field">
+                <label for="selected-lastUpdated">Last Updated:</label>
+                <span type="text" th:text="${selected.last_updated}"></span>
+            </div>
+
+            <div class="show-field">
+                <label for="selected-cost">Cost:</label>
+                <span type="text" th:text="${selected.cost}"></span>
+            </div>
+
+            <div class="show-field">
+                <label for="selected-weight">Weight:</label>
+                <span type="text" th:text="${selected.weight}"></span>
+            </div>
+
+            <div class="show-field">
+                <label for="selected-examine">Examine:</label>
+                <span type="text" th:text="${selected.examine}"></span>
+            </div>
+
+            <div class="show-field">
+                <label for="selected-wiki_url">Wiki Url:</label>
+                <span type="text" th:text="${selected.wiki_url}"></span>
+            </div>
+    </div>
+
+
+
+</body>
+
+</html>

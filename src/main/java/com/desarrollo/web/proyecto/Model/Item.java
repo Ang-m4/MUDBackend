@@ -13,8 +13,8 @@ public class Item{
 
     public Item(){}
 
-
     public Item(Long id, String name, String last_updated, int cost, int weight, String examine, String wiki_url) {
+        
         this.id = id;
         this.name = name;
         this.last_updated = last_updated;

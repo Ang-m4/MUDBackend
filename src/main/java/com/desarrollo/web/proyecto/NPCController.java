@@ -2,6 +2,9 @@ package com.desarrollo.web.proyecto;
 
 import java.util.ArrayList;
 import com.desarrollo.web.proyecto.Model.NPC;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,25 +15,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/monster")
 public class NPCController {
 
+    Logger log = LoggerFactory.getLogger(getClass());
+
+
     @Autowired
     ArrayList<NPC> monsters;
     
     @GetMapping("/list")
     String showMonsters(Model model){
 
-        NPC a = new NPC();
-        System.out.println("Monsters" + monsters.size());
-        a.setName("Maria");
-        monsters.add(a);
-        model.addAttribute("monsters",monsters);
-        return "listMonsters";
+        model.addAttribute("datos",monsters);
+        model.addAttribute("ruta", "monster");
+        return "monster-list";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/edit")
     String createMonster(){
+        
 
-        System.out.println("Monsters" + monsters.size());
-        return "createMonster";
+        return "monster-edit";
     }
 
 }

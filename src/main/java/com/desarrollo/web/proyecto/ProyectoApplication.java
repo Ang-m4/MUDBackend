@@ -27,17 +27,15 @@ public class ProyectoApplication {
 	}
 
 	@Bean
-    ArrayList<NPC> loadMonsters() {
+    ArrayList<NPC> loadMonsters(){
 		
 		ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		TypeReference<List<NPC>> typeReference = new TypeReference<List<NPC>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/monstruos.json");
-       
+		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/monstruos.json");       
 		List<NPC> monsterList = new ArrayList<>();
-        
+
         try {
-            
             monsterList = (mapper.readValue(inputStream,typeReference));
             
         } catch (StreamReadException e) {
@@ -115,4 +113,11 @@ public class ProyectoApplication {
 		return items;
 	}
 	
+    @Bean
+    ArrayList<Player> loadPlayers(){
+
+        ArrayList<Player> playerList = new ArrayList<>();
+        return playerList;
+    }
+
 }
