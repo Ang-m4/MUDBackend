@@ -19,11 +19,13 @@ public class PlayerController {
 
     @GetMapping("/list")
     String showPlayers(){
+        
         return "listPlayers";
     }
     
     @GetMapping("/create")
     String createPlayer(){
+
         return "createPlayer";
     }
 

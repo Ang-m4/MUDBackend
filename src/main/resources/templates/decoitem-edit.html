@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1 th:text="'Editando: '+ ${selected.name}"></h1>
+
+        <form action="#" th:action="@{/decoItem/save}" th:object="${selected}" method="post">
+
+            <div class="edit-field">
+                <label for="selected-name">Id:</label>
+                <input type="text" th:field="${selected.id}">
+            </div>
+
+            <div class="edit-field">
+                <label for="selected-name">Name:</label>
+                <input type="text" th:field="${selected.name}">
+            </div>
+
+
+            <div class="edit-field">
+                <button type="submit"> Guardar </button>
+            </div>
+
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

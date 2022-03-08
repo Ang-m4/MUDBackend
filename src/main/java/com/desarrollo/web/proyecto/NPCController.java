@@ -40,7 +40,6 @@ public class NPCController {
     
     }
 
-
     @GetMapping("/edit")
     String editMonster(Model model,@RequestParam Long id){
         log.info("IN DELETE");
@@ -48,7 +47,6 @@ public class NPCController {
         model.addAttribute("selected",selected);
         return "monster-edit";
     }
-
 
     @GetMapping("/delete")
     String deleteMonster(Model model,@RequestParam Long id){
