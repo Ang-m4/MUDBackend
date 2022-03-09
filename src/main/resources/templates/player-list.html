@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1>List Players</h1>
+
+        <div>
+            <h3>Todos los Jugadores:</h3>
+            <div th:replace="~{fragments::list-fragment}">
+            </div>
+        </div>
+
+        <a th:href="@{create}">
+            <button> Crear </button>
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,11 +1,7 @@
 package com.desarrollo.web.proyecto;
 
 import java.util.ArrayList;
-import java.util.Set;
-
-import com.desarrollo.web.proyecto.Model.DecorativeItem;
 import com.desarrollo.web.proyecto.Model.Item;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

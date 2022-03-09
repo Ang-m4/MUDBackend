@@ -8,7 +8,6 @@ public class DecorativeItem {
 
     public DecorativeItem(){}
 
-    
     public DecorativeItem(Long id, String name) {
         this.id = id;
         this.name = name;
@@ -30,7 +29,5 @@ public class DecorativeItem {
         this.name = name;
     };
 
-    
-    
     
 }
