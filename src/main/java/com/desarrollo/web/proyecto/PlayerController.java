@@ -25,7 +25,6 @@ public class PlayerController {
     String showPlayers(Model model){
         
         model.addAttribute("datos",players);
-        
         return "player-list";
     }
     
@@ -80,6 +79,7 @@ public class PlayerController {
 
         return "redirect:/player/list";
     }
+
     Player getById(Long id){
 
         Player retorno = null;

@@ -33,7 +33,7 @@ public class NPCController {
 
     @GetMapping("/show")
     String showMonster(Model model,@RequestParam Long id){
-        log.info("IN DELETE");
+        
         NPC selected = getById(id);
         model.addAttribute("selected",selected);
         return "monster-show";
@@ -90,9 +90,7 @@ public class NPCController {
 
                 return monster;
             }
-
         }
-
 
         return retorno;
     }

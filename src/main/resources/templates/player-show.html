@@ -55,14 +55,13 @@
         <div class="show-field">
 
             <label for="selected-backpack">Mochila:</label>
-
             <ul>
                 <li th:each="item: ${selected.backpack}">
                     <span th:text="${item.name}"></span>
                 </li>
             </ul>
-
         </div>
+
 
         <div class="show-field">
             <label for="selected-examine">Examine:</label>
