@@ -1,10 +1,8 @@
 package com.desarrollo.web.proyecto.Model;
 
 import java.util.ArrayList;
-import java.util.Locale.Category;
 
-
-public class NPC {
+public class Entity {
     
     private Long id;
     private String name;
@@ -17,11 +15,11 @@ public class NPC {
     private String examine;
     private String wiki_url;
     
-    public NPC(){
+    public Entity(){
         this.category = new ArrayList<>();
     };
 
-    public NPC(Long id, String name, String last_updated, int attack_level, int defence_slash, int size, int hitpoints,
+    public Entity(Long id, String name, String last_updated, int attack_level, int defence_slash, int size, int hitpoints,
             ArrayList<String> category, String examine, String wiki_url) {
         this.id = id;
         this.name = name;
@@ -118,7 +116,7 @@ public class NPC {
 
     @Override
     public String toString() {
-        return "\nMonster [name=" + name +", attack_level=" + attack_level + ", category=" + category + ", defence_slash=" + defence_slash
+        return "\n[name=" + name +", attack_level=" + attack_level + ", category=" + category + ", defence_slash=" + defence_slash
                 + ", examine=" + examine + ", hitpoints=" + hitpoints + ", last_updated=" + last_updated + ", size="
                 + size + "]";
     }

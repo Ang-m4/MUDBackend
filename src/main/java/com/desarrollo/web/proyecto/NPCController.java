@@ -1,7 +1,7 @@
 package com.desarrollo.web.proyecto;
 
 import java.util.ArrayList;
-import com.desarrollo.web.proyecto.Model.NPC;
+import com.desarrollo.web.proyecto.Model.Monster;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class NPCController {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    ArrayList<NPC> monsters;
+    ArrayList<Monster> monsters;
     
     @GetMapping("/list")
     String showMonsters(Model model){
@@ -34,7 +34,7 @@ public class NPCController {
     @GetMapping("/show")
     String showMonster(Model model,@RequestParam Long id){
         
-        NPC selected = getById(id);
+        Monster selected = getById(id);
         model.addAttribute("selected",selected);
         return "monster-show";
     
@@ -43,7 +43,7 @@ public class NPCController {
     @GetMapping("/edit")
     String editMonster(Model model,@RequestParam Long id){
        
-        NPC selected = getById(id);
+        Monster selected = getById(id);
         model.addAttribute("selected",selected);
         return "monster-edit";
     }
@@ -51,14 +51,14 @@ public class NPCController {
     @GetMapping("/delete")
     String deleteMonster(Model model,@RequestParam Long id){
         
-        NPC selected = getById(id);
+        Monster selected = getById(id);
         monsters.remove(selected);
 
         return "redirect:/monster/list";
     }
 
     @PostMapping("/save")
-    String saveData(@ModelAttribute NPC monster,Model model){
+    String saveData(@ModelAttribute Monster monster,Model model){
        
         Integer index = findById(monster.getId());
 
@@ -76,15 +76,15 @@ public class NPCController {
     @GetMapping("/create")
     String createMonster(Model model){
 
-        model.addAttribute("selected", new NPC());
+        model.addAttribute("selected", new Monster());
         return "monster-create";
     }
    
-    NPC getById(Long id){
+    Monster getById(Long id){
 
-        NPC retorno = null;
+        Monster retorno = null;
 
-        for(NPC monster : monsters){
+        for(Monster monster : monsters){
 
             if( monster.getId() == id ){
 

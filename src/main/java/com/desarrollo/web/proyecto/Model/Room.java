@@ -8,7 +8,7 @@ public class Room {
     private Long name;
     private ArrayList<DecorativeItem> decorativeItems;
     private ArrayList<Item> items;
-    private NPC monster;
+    private Entity monster;
     private ArrayList<Player> players;
     private ArrayList<Room> exits;
 
@@ -19,7 +19,7 @@ public class Room {
         this.exits = new ArrayList<>();
     }
 
-    public Room(Long id, Long name, ArrayList<DecorativeItem> decorativeItems, ArrayList<Item> items, NPC monster,
+    public Room(Long id, Long name, ArrayList<DecorativeItem> decorativeItems, ArrayList<Item> items, Entity monster,
             ArrayList<Player> players, ArrayList<Room> exits) {
         this.id = id;
         this.name = name;
@@ -62,10 +62,10 @@ public class Room {
     public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
-    public NPC getMonster() {
+    public Entity getMonster() {
         return monster;
     }
-    public void setMonster(NPC monster) {
+    public void setMonster(Entity monster) {
         this.monster = monster;
     }
     public ArrayList<Player> getPlayers() {

@@ -28,13 +28,13 @@ public class ProyectoApplication {
 
 
 	@Bean
-    ArrayList<NPC> loadMonsters(){
+    ArrayList<Monster> loadMonsters(){
 		
 		ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		TypeReference<List<NPC>> typeReference = new TypeReference<List<NPC>>(){};
+		TypeReference<List<Monster>> typeReference = new TypeReference<List<Monster>>(){};
 		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/monstruos.json");       
-		List<NPC> monsterList = new ArrayList<>();
+		List<Monster> monsterList = new ArrayList<>();
 
         try {
             monsterList = (mapper.readValue(inputStream,typeReference));     
@@ -48,7 +48,7 @@ public class ProyectoApplication {
             
             e.printStackTrace();
         }
-		ArrayList<NPC> monsters = new ArrayList<>();
+		ArrayList<Monster> monsters = new ArrayList<>();
 		monsters.addAll(monsterList);
 
 		return monsters;

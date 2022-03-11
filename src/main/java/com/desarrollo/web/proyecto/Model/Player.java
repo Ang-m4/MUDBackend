@@ -2,7 +2,7 @@ package com.desarrollo.web.proyecto.Model;
 
 import java.util.ArrayList;
 
-public class Player extends NPC {
+public class Player extends Entity {
     
     ArrayList<Item> backpack;
     Long maxWeight;

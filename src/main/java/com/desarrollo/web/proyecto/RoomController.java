@@ -2,15 +2,12 @@ package com.desarrollo.web.proyecto;
 
 import java.util.ArrayList;
 import com.desarrollo.web.proyecto.Model.*;
-
-import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,7 +19,7 @@ public class RoomController {
     ArrayList<Item> items;
 
     @Autowired
-    ArrayList<NPC> monsters;
+    ArrayList<Monster> monsters;
 
     @Autowired
     ArrayList<DecorativeItem> decoItems;
@@ -51,7 +48,6 @@ public class RoomController {
         model.addAttribute("players", players);
         model.addAttribute("rooms", rooms);
         model.addAttribute("room", new Room());
-    
 
         return "room-create";
     }
@@ -63,15 +59,9 @@ public class RoomController {
         log.info(idItem.toString());
         room.getItems().add(items.get(0));
 
-        model.addAttribute("items", items);
-        model.addAttribute("monsters", monsters);
-        model.addAttribute("decoItems", decoItems);
-        model.addAttribute("players", players);
-        model.addAttribute("rooms", rooms);
-        model.addAttribute("room", room);
-
-        log.info("El tam de los items es " + room.getItems().size());
         
+        log.info("El tam de los items es " + room.getItems().size());
+
         return "room-create";
     }
 
