@@ -4,17 +4,25 @@ import java.util.ArrayList;
 
 public class Room {
     
+    private Long id;
+    private Long name;
     private ArrayList<DecorativeItem> decorativeItems;
     private ArrayList<Item> items;
     private NPC monster;
     private ArrayList<Player> players;
     private ArrayList<Room> exits;
 
-    public Room() {
+    public Room(){
+        this.decorativeItems = new ArrayList<>();
+        this.items = new ArrayList<>();
+        this.players = new ArrayList<>();
+        this.exits = new ArrayList<>();
     }
 
-    public Room(ArrayList<DecorativeItem> decorativeItems, ArrayList<Item> items, NPC monster,
+    public Room(Long id, Long name, ArrayList<DecorativeItem> decorativeItems, ArrayList<Item> items, NPC monster,
             ArrayList<Player> players, ArrayList<Room> exits) {
+        this.id = id;
+        this.name = name;
         this.decorativeItems = decorativeItems;
         this.items = items;
         this.monster = monster;
@@ -22,7 +30,26 @@ public class Room {
         this.exits = exits;
     }
 
-    
+    public Long getId() {
+        return id;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public Long getName() {
+        return name;
+    }
+
+
+    public void setName(Long name) {
+        this.name = name;
+    }
+
+
     public ArrayList<DecorativeItem> getDecorativeItems() {
         return decorativeItems;
     }
@@ -53,6 +80,5 @@ public class Room {
     public void setExits(ArrayList<Room> exits) {
         this.exits = exits;
     }
-
 
 }

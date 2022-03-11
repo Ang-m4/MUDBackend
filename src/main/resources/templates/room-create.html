@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+    <div class="main-container">
+        <h1>Crear Habitacion</h1>
+
+        <div class=list-container>
+            <h4> ITEMS </h4>
+            <div th:fragment="list-fragment" class="list">
+                <ul>
+                    <li th:each="item: ${items}" class="list_item">
+                        <div class="">
+                            Nombre: <span th:text="${item.name}"></span>
+                        </div>
+
+                        <div>
+                            <form action="#" th:action="@{/room/addItem}" th:object="${room}" method="post">
+                                Id: <input name="idItem" th:value="${item.id}" type="hidden" /> <br/>
+                                <input type="submit" value="Agregar">
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class=list-container>
+            <h4> MONSTERS </h4>
+            <div th:fragment="list-fragment" class="list">
+                <ul>
+                    <li th:each="monster: ${monsters}" class="list_item">
+                        <div class="">
+                            Nombre: <span th:text="${monster.name}"></span>
+                        </div>
+
+                        <div class="">
+                            Id: <span th:text="${monster.id}"></span>
+                        </div>
+
+                        <div>
+                            <a th:href="@{show (id = ${monster.id})}" th:text="agregar"> </a>
+                        </div>
+
+
+
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class=list-container>
+            <h4> DECORATIVOS </h4>
+            <div th:fragment="list-fragment" class="list">
+                <ul>
+                    <li th:each="decoItem: ${decoItems}" class="list_item">
+                        <div class="">
+                            Nombre: <span th:text="${decoItem.name}"></span>
+                        </div>
+
+                        <div class="">
+                            Id: <span th:text="${decoItem.id}"></span>
+                        </div>
+
+                        <div>
+                            <a th:href="@{show (id = ${decoItem.id})}" th:text="agregar"> </a>
+                        </div>
+
+
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class=list-container>
+            <h4> PLAYERS </h4>
+            <div th:fragment="list-fragment" class="list">
+                <ul>
+                    <li th:each="player: ${players}" class="list_item">
+                        <div class="">
+                            Nombre: <span th:text="${player.name}"></span>
+                        </div>
+
+                        <div class="">
+                            Id: <span th:text="${player.id}"></span>
+                        </div>
+
+                        <div>
+                            <a th:href="@{show (id = ${player.id})}" th:text="agregar"> </a>
+                        </div>
+
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class=list-container>
+            <h4> ROOMS: </h4>
+            <div th:fragment="list-fragment" class="list">
+                <ul>
+                    <li th:each="room: ${rooms}" class="list_item">
+                        <div class="">
+                            Nombre: <span th:text="${room.name}"></span>
+                        </div>
+
+                        <div class="">
+                            Id: <span th:text="${room.id}"></span>
+                        </div>
+
+                        <div>
+                            <a th:href="@{show (id = ${room.id})}" th:text="agregar"> </a>
+                        </div>
+
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

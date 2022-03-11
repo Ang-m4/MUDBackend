@@ -148,4 +148,10 @@ public class ProyectoApplication {
         return playerList;
     }
 
+    @Bean
+    ArrayList<Room> createRooms(){
+        
+        ArrayList<Room> retorno = new ArrayList<>();
+        return retorno;
+    }
 }
