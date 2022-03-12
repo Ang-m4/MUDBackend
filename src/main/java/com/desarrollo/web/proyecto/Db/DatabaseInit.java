@@ -29,6 +29,9 @@ public class DatabaseInit implements ApplicationRunner{
     @Autowired
     ItemRepository itemRepo;
 
+    @Autowired
+    MonsterRepository monsterRepo;
+
     /// se ejecuta una sola vez al inicio de la aplicacion.
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -36,8 +39,7 @@ public class DatabaseInit implements ApplicationRunner{
        
         loadDecoItems();
         loadItems();
-        
-
+        loadMonsters();
     }
     
     
@@ -94,6 +96,29 @@ public class DatabaseInit implements ApplicationRunner{
         
 	}
 
+    void loadMonsters(){
 
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		TypeReference<List<Monster>> typeReference = new TypeReference<List<Monster>>(){};
+		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/monstruos.json");       
+		List<Monster> monsterList = new ArrayList<>();
+
+        try {
+            monsterList = (mapper.readValue(inputStream,typeReference));     
+        } catch (StreamReadException e) {
+            
+            e.printStackTrace();
+        } catch (DatabindException e) {
+            
+            e.printStackTrace();
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+		
+        monsterRepo.saveAll(monsterList);
+
+    }
 
 }

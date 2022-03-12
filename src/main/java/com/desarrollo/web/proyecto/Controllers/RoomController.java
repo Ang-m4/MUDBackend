@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.desarrollo.web.proyecto.Db.DecorativeItemRepository;
 import com.desarrollo.web.proyecto.Db.ItemRepository;
+import com.desarrollo.web.proyecto.Db.MonsterRepository;
 import com.desarrollo.web.proyecto.Model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,7 @@ public class RoomController {
     DecorativeItemRepository decorativeItemRepository;
 
     @Autowired
-    ArrayList<Monster> monsters;
+    MonsterRepository monsterRepository;
 
     @Autowired
     ArrayList<Player> players;
@@ -46,7 +47,7 @@ public class RoomController {
     String createRoom(Model model, Long i) {
 
         model.addAttribute("items", itemRepository.findAll());
-        model.addAttribute("monsters", monsters);
+        model.addAttribute("monsters", monsterRepository.findAll());
         model.addAttribute("decoItems",decorativeItemRepository.findAll());
         model.addAttribute("players", players);
         model.addAttribute("rooms", rooms);

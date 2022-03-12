@@ -104,7 +104,8 @@
     "size": 1,
     "hitpoints": 17,
     "category": [
-      "skeletons"
+      "skeletons",
+      "HOMOSAPIENS"
     ],
     "examine": "An undead worker of dark magic.",
     "wiki_url": "https://oldschool.runescape.wiki/w/Skeleton_Mage#Level_16"

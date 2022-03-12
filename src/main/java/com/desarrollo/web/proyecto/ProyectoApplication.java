@@ -26,34 +26,6 @@ public class ProyectoApplication {
 		SpringApplication.run(ProyectoApplication.class, args);
 	}
 
-
-	@Bean
-    ArrayList<Monster> loadMonsters(){
-		
-		ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		TypeReference<List<Monster>> typeReference = new TypeReference<List<Monster>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/monstruos.json");       
-		List<Monster> monsterList = new ArrayList<>();
-
-        try {
-            monsterList = (mapper.readValue(inputStream,typeReference));     
-        } catch (StreamReadException e) {
-            
-            e.printStackTrace();
-        } catch (DatabindException e) {
-            
-            e.printStackTrace();
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }
-		ArrayList<Monster> monsters = new ArrayList<>();
-		monsters.addAll(monsterList);
-
-		return monsters;
-	}
-
     @Bean
     ArrayList<Player> loadPlayers(){
 

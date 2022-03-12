@@ -1,16 +1,17 @@
 package com.desarrollo.web.proyecto.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Room {
     
     private Long id;
     private Long name;
-    private ArrayList<DecorativeItem> decorativeItems;
-    private ArrayList<Item> items;
+    private List<DecorativeItem> decorativeItems;
+    private List<Item> items;
     private Entity monster;
-    private ArrayList<Player> players;
-    private ArrayList<Room> exits;
+    private List<Player> players;
+    private List<Room> exits;
 
     public Room(){
         this.decorativeItems = new ArrayList<>();
@@ -50,13 +51,13 @@ public class Room {
     }
 
 
-    public ArrayList<DecorativeItem> getDecorativeItems() {
+    public List<DecorativeItem> getDecorativeItems() {
         return decorativeItems;
     }
     public void setDecorativeItems(ArrayList<DecorativeItem> decorativeItems) {
         this.decorativeItems = decorativeItems;
     }
-    public ArrayList<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
     public void setItems(ArrayList<Item> items) {
@@ -68,13 +69,13 @@ public class Room {
     public void setMonster(Entity monster) {
         this.monster = monster;
     }
-    public ArrayList<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
-    public ArrayList<Room> getExits() {
+    public List<Room> getExits() {
         return exits;
     }
     public void setExits(ArrayList<Room> exits) {

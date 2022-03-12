@@ -1,6 +1,8 @@
 package com.desarrollo.web.proyecto.Controllers;
 
 import java.util.ArrayList;
+
+import com.desarrollo.web.proyecto.Db.MonsterRepository;
 import com.desarrollo.web.proyecto.Model.Monster;
 
 import org.slf4j.Logger;
@@ -21,20 +23,19 @@ public class MonsterController {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    ArrayList<Monster> monsters;
+    MonsterRepository monsterRepository;
     
     @GetMapping("/list")
     String showMonsters(Model model){
 
-        model.addAttribute("datos",monsters);
-        model.addAttribute("ruta", "monster");
+        model.addAttribute("datos",monsterRepository.findAll());
         return "monster-list";
     }
 
     @GetMapping("/show")
     String showMonster(Model model,@RequestParam Long id){
         
-        Monster selected = getById(id);
+        Monster selected = monsterRepository.findById(id).orElseThrow();
         model.addAttribute("selected",selected);
         return "monster-show";
     
@@ -43,7 +44,7 @@ public class MonsterController {
     @GetMapping("/edit")
     String editMonster(Model model,@RequestParam Long id){
        
-        Monster selected = getById(id);
+        Monster selected = monsterRepository.findById(id).orElseThrow();
         model.addAttribute("selected",selected);
         return "monster-edit";
     }
@@ -51,24 +52,15 @@ public class MonsterController {
     @GetMapping("/delete")
     String deleteMonster(Model model,@RequestParam Long id){
         
-        Monster selected = getById(id);
-        monsters.remove(selected);
-
+        
+        monsterRepository.deleteById(id);
         return "redirect:/monster/list";
     }
 
     @PostMapping("/save")
     String saveData(@ModelAttribute Monster monster,Model model){
        
-        Integer index = findById(monster.getId());
-
-        if(index != -1 ){
-            
-            monsters.set(index, monster);
-
-        }else{
-            monsters.add(monster);
-        }
+        monsterRepository.save(monster);
         
         return "redirect:/monster/list";
     }
@@ -80,32 +72,4 @@ public class MonsterController {
         return "monster-create";
     }
    
-    Monster getById(Long id){
-
-        Monster retorno = null;
-
-        for(Monster monster : monsters){
-
-            if( monster.getId() == id ){
-
-                return monster;
-            }
-        }
-
-        return retorno;
-    }
-
-    Integer findById(Long id){
-
-        for (int index = 0; index < monsters.size(); index++) {
-            
-            if(monsters.get(index).getId().longValue() == id){
-                
-                return index;
-            }
-
-        }
-
-        return -1;
-    }
 }

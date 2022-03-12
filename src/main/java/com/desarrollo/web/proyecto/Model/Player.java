@@ -10,6 +10,7 @@ public class Player extends Entity {
 
     public Player() {
         backpack = new ArrayList<>();
+        
     }
 
     public Player(Long id, String name, String last_updated, int attack_level, int defence_slash, int size,
@@ -39,7 +40,5 @@ public class Player extends Entity {
     public void setWeight(Long weight) {
         this.weight = weight;
     }
-    
-    
 
 }
