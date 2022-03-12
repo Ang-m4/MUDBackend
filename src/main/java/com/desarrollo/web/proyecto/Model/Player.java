@@ -1,18 +1,27 @@
 package com.desarrollo.web.proyecto.Model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
-public class Player{
-    
+@Table(name = "Players")
+public class Player {
 
     @Id
     @GeneratedValue
@@ -32,21 +41,29 @@ public class Player{
     private String examine;
     private String wiki_url;
 
-    @OneToMany
-    List<Item> backpack;
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "Player_Items",
+            joinColumns = {@JoinColumn(name = "player_id")},
+            inverseJoinColumns = {@JoinColumn(name ="item_id")}
+    )
+    private Set<Item> backpack;
 
     Long maxWeight;
     Long weight;
 
     public Player() {
         category = new ArrayList<>();
-        backpack = new ArrayList<>();
+        backpack = new HashSet<>();
     }
 
-    public Player( String name, String last_updated, int attack_level, int defence_slash, int size,
-            int hitpoints, List<String> category, String examine, String wiki_url, ArrayList<Item> backpack,
+    public Player(String name, String last_updated, int attack_level, int defence_slash, int size,
+            int hitpoints, List<String> category, String examine, String wiki_url, Set<Item> backpack,
             Long maxWeight, Long weight) {
-                
+
         this.name = name;
         this.last_updated = last_updated;
         this.attack_level = attack_level;
@@ -117,52 +134,50 @@ public class Player{
         this.hitpoints = hitpoints;
     }
 
-
     public List<String> getCategory() {
         return category;
     }
-
 
     public void setCategory(List<String> category) {
         this.category = category;
     }
 
-
     public String getExamine() {
         return examine;
     }
-
 
     public void setExamine(String examine) {
         this.examine = examine;
     }
 
-
     public String getWiki_url() {
         return wiki_url;
     }
-
 
     public void setWiki_url(String wiki_url) {
         this.wiki_url = wiki_url;
     }
 
-
-    public List<Item> getBackpack() {
+    public Set<Item> getBackpack() {
         return backpack;
     }
-    public void setBackpack(ArrayList<Item> backpack) {
+
+    public void setBackpack(Set<Item> backpack) {
         this.backpack = backpack;
     }
+
     public Long getMaxWeight() {
         return maxWeight;
     }
+
     public void setMaxWeight(Long maxWeight) {
         this.maxWeight = maxWeight;
     }
+
     public Long getWeight() {
         return weight;
     }
+
     public void setWeight(Long weight) {
         this.weight = weight;
     }

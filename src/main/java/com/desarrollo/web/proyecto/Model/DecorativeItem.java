@@ -3,10 +3,12 @@ package com.desarrollo.web.proyecto.Model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "Decorative_items")
 public class DecorativeItem {
     
     @JsonIgnore

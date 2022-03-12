@@ -1,11 +1,21 @@
 package com.desarrollo.web.proyecto.Model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.hibernate.annotations.ManyToAny;
+
 @Entity
+@Table(name = "Items")
 public class Item{
 
     @JsonIgnore
@@ -20,9 +30,14 @@ public class Item{
     private String examine;
     private String wiki_url; 
 
-    public Item(){}
+    @ManyToMany(mappedBy = "backpack")
+    private Set<Player> obtainedBy;
     
-    public Item(String name, String last_updated, int cost, int weight, String examine, String wiki_url) {
+    public Item(){
+        obtainedBy = new HashSet<>();
+    }
+
+    public Item(String name, String last_updated, int cost, int weight, String examine, String wiki_url,Set<Player> obtainedBy) {
         
         this.name = name;
         this.last_updated = last_updated;
@@ -30,6 +45,7 @@ public class Item{
         this.weight = weight;
         this.examine = examine;
         this.wiki_url = wiki_url;
+        this.obtainedBy = obtainedBy;
     }
 
     public Long getId() {
@@ -86,8 +102,14 @@ public class Item{
 
     public void setWiki_url(String wiki_url) {
         this.wiki_url = wiki_url;
+    }
+
+    public Set<Player> getObtainedBy() {
+        return obtainedBy;
+    }
+
+    public void setObtainedBy(Set<Player> obtainedBy) {
+        this.obtainedBy = obtainedBy;
     };
-
-
 
 }
