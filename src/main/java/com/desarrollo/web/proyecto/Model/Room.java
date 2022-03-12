@@ -3,17 +3,55 @@ package com.desarrollo.web.proyecto.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+@Entity
 public class Room {
-    
+
+    @Id
+    @GeneratedValue
     private Long id;
+
     private Long name;
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "Room_decoItems", joinColumns = { @JoinColumn(name = "Room_Id") }, inverseJoinColumns = {
+            @JoinColumn(name = "decoItem_id") })
     private List<DecorativeItem> decorativeItems;
+
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "Room_Items", joinColumns = { @JoinColumn(name = "Room_Id") }, inverseJoinColumns = {
+            @JoinColumn(name = "Item_id") })
     private List<Item> items;
+
+
+
+    
+    @Transient
     private Entity monster;
+
+    @Transient
     private List<Player> players;
+
+    @Transient
     private List<Room> exits;
 
-    public Room(){
+    public Room() {
         this.decorativeItems = new ArrayList<>();
         this.items = new ArrayList<>();
         this.players = new ArrayList<>();
@@ -35,49 +73,54 @@ public class Room {
         return id;
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public Long getName() {
         return name;
     }
 
-
     public void setName(Long name) {
         this.name = name;
     }
 
-
     public List<DecorativeItem> getDecorativeItems() {
         return decorativeItems;
     }
+
     public void setDecorativeItems(ArrayList<DecorativeItem> decorativeItems) {
         this.decorativeItems = decorativeItems;
     }
+
     public List<Item> getItems() {
         return items;
     }
+
     public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
+
     public Entity getMonster() {
         return monster;
     }
+
     public void setMonster(Entity monster) {
         this.monster = monster;
     }
+
     public List<Player> getPlayers() {
         return players;
     }
+
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
+
     public List<Room> getExits() {
         return exits;
     }
+
     public void setExits(ArrayList<Room> exits) {
         this.exits = exits;
     }

@@ -1,10 +1,13 @@
 package com.desarrollo.web.proyecto.Model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -17,10 +20,16 @@ public class DecorativeItem {
     private Long id;
     private String name;
 
-    public DecorativeItem(){}
+    @ManyToMany(mappedBy = "decorativeItems")
+    private Set<Room> locations;
 
-    public DecorativeItem(String name) {
+    public DecorativeItem(){
+        locations = new HashSet<>();
+    }
+
+    public DecorativeItem(String name,Set<Room> locations) {
         this.name = name;
+        this.locations = locations;   
     }
 
     public Long getId() {
@@ -37,6 +46,15 @@ public class DecorativeItem {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Room> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Set<Room> locations) {
+        this.locations = locations;
     };
+
 
 }

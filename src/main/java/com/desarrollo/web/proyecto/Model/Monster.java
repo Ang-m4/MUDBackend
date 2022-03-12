@@ -38,10 +38,9 @@ public class Monster {
         this.category = new ArrayList<>();
     }    
 
-    public Monster(Long id, String name, String last_updated, int attack_level, int defence_slash, int size,
+    public Monster( String name, String last_updated, int attack_level, int defence_slash, int size,
             int hitpoints, ArrayList<String> category, String examine, String wiki_url) {
 
-        this.id = id;
         this.name = name;
         this.last_updated = last_updated;
         this.attack_level = attack_level;
