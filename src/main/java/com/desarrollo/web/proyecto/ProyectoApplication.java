@@ -1,17 +1,7 @@
 package com.desarrollo.web.proyecto;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
-
 import com.desarrollo.web.proyecto.Model.*;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -66,4 +56,5 @@ public class ProyectoApplication {
         ArrayList<Room> retorno = new ArrayList<>();
         return retorno;
     }
+    
 }

@@ -1,7 +1,5 @@
 package com.desarrollo.web.proyecto.Controllers;
 
-import java.util.ArrayList;
-
 import com.desarrollo.web.proyecto.Db.ItemRepository;
 import com.desarrollo.web.proyecto.Model.Item;
 import org.slf4j.Logger;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/item")
 public class ItemController {
 
-
     @Autowired
     ItemRepository itemRepository;
 
@@ -28,9 +25,8 @@ public class ItemController {
     @GetMapping("/list")
     String showItems(Model model) {
 
-        ArrayList<Item> items = new ArrayList<>();
-        itemRepository.findAll().forEach(items::add);
-        model.addAttribute("datos",items);
+
+        model.addAttribute("datos",itemRepository.findAll());
         return "item-list";
     }
 
@@ -76,6 +72,5 @@ public class ItemController {
         return "item-create";
 
     }
-
 
 }

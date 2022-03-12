@@ -1,10 +1,7 @@
 package com.desarrollo.web.proyecto.Controllers;
 
-import java.util.ArrayList;
-
 import com.desarrollo.web.proyecto.Db.MonsterRepository;
 import com.desarrollo.web.proyecto.Model.Monster;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +68,5 @@ public class MonsterController {
         model.addAttribute("selected", new Monster());
         return "monster-create";
     }
-   
+    
 }
