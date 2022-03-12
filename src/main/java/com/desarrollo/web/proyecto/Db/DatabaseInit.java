@@ -43,7 +43,6 @@ public class DatabaseInit implements ApplicationRunner{
         loadItems();
         loadMonsters();
         
-        
     }
     
     void loadDecoItems(){

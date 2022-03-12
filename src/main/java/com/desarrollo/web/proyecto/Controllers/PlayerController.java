@@ -35,18 +35,15 @@ public class PlayerController {
         
         Player selected = playerRepository.findById(id).orElseThrow();
         model.addAttribute("selected",selected);
-        
         return "player-edit";
     }
     
-
     @GetMapping("/create")
     String createPlayer(Model model){
         
         model.addAttribute("selected",new Player());
         return "player-create";
     }
-
 
     @GetMapping("/show")
     String showPlayer(Model model,@RequestParam Long id){
@@ -56,7 +53,6 @@ public class PlayerController {
         return "player-show";
     }
 
-
     @PostMapping("/save")
     String saveData(@ModelAttribute Player player,Model model){
        
@@ -65,7 +61,6 @@ public class PlayerController {
 
         player.getBackpack().add(iA);
         player.getBackpack().add(iB);
-
         playerRepository.save(player);
         return "redirect:/player/list";
     }
@@ -76,4 +71,5 @@ public class PlayerController {
         playerRepository.deleteById(id);
         return "redirect:/player/list";
     }
+    
 }   
