@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/monster")
-public class NPCController {
+public class MonsterController {
 
     Logger log = LoggerFactory.getLogger(getClass());
 
