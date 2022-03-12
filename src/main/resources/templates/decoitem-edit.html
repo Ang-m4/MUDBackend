@@ -13,8 +13,8 @@
         <form action="#" th:action="@{/decoItem/save}" th:object="${selected}" method="post">
 
             <div class="edit-field">
-                <label for="selected-name">Id:</label>
-                <input type="text" th:field="${selected.id}">
+                <label for="selected-name">Name:</label>
+                <input type="hidden" th:field="${selected.id}" th:text="${selected.id}">
             </div>
 
             <div class="edit-field">

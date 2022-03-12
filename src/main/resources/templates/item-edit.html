@@ -11,12 +11,12 @@
         <h1 th:text="'Editando: '+ ${selected.name}"></h1>
 
         <form action="#" th:action="@{/item/save}" th:object="${selected}" method="post">
-
+            
             <div class="edit-field">
                 <label for="selected-name">Id:</label>
-                <input  type="text" th:field="${selected.id}">
+                <input type="hidden" th:field="${selected.id}">
             </div>
-            
+
             <div class="edit-field">
                 <label for="selected-name">Name:</label>
                 <input type="text" th:field="${selected.name}">
@@ -29,12 +29,12 @@
 
             <div class="edit-field">
                 <label for="selected-cost">Cost:</label>
-                <input type="text" th:field="${selected.cost}">
+                <input type="number" th:field="${selected.cost}">
             </div>
 
             <div class="edit-field">
                 <label for="selected-weight">Weight:</label>
-                <input type="text" th:field="${selected.weight}">
+                <input type="number" th:field="${selected.weight}">
             </div>
 
             <div class="edit-field">

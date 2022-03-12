@@ -1,6 +1,9 @@
-package com.desarrollo.web.proyecto;
+package com.desarrollo.web.proyecto.Controllers;
 
 import java.util.ArrayList;
+
+import com.desarrollo.web.proyecto.Db.DecorativeItemRepository;
+import com.desarrollo.web.proyecto.Db.ItemRepository;
 import com.desarrollo.web.proyecto.Model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RoomController {
 
     @Autowired
-    ArrayList<Item> items;
+    ItemRepository itemRepository;
+
+    @Autowired
+    DecorativeItemRepository decorativeItemRepository;
 
     @Autowired
     ArrayList<Monster> monsters;
-
-    @Autowired
-    ArrayList<DecorativeItem> decoItems;
 
     @Autowired
     ArrayList<Player> players;
@@ -42,9 +45,9 @@ public class RoomController {
     @GetMapping("/create")
     String createRoom(Model model, Long i) {
 
-        model.addAttribute("items", items);
+        model.addAttribute("items", itemRepository.findAll());
         model.addAttribute("monsters", monsters);
-        model.addAttribute("decoItems", decoItems);
+        model.addAttribute("decoItems",decorativeItemRepository.findAll());
         model.addAttribute("players", players);
         model.addAttribute("rooms", rooms);
         model.addAttribute("room", new Room());
@@ -57,9 +60,6 @@ public class RoomController {
 
         log.info("Entramos al Add");
         log.info(idItem.toString());
-        room.getItems().add(items.get(0));
-
-        
         log.info("El tam de los items es " + room.getItems().size());
 
         return "room-create";

@@ -1,4 +1,4 @@
-package com.desarrollo.web.proyecto;
+package com.desarrollo.web.proyecto.Controllers;
 
 import java.util.ArrayList;
 import com.desarrollo.web.proyecto.Model.Monster;

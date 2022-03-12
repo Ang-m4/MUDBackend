@@ -1,7 +1,8 @@
-package com.desarrollo.web.proyecto;
+package com.desarrollo.web.proyecto.Controllers;
 
 import java.util.ArrayList;
 
+import com.desarrollo.web.proyecto.Db.DecorativeItemRepository;
 import com.desarrollo.web.proyecto.Model.DecorativeItem;
 
 import org.slf4j.Logger;
@@ -20,26 +21,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class DecoItemsController {
 
+
     @Autowired
-    ArrayList<DecorativeItem> decoItems;
+    DecorativeItemRepository decoItemRepository;
+
 
     Logger log = LoggerFactory.getLogger(getClass());
 
     @RequestMapping("/list")
     String showItems(Model model){
 
+        ArrayList<DecorativeItem> decoItems = new ArrayList<>();
+        decoItemRepository.findAll().forEach(decoItems::add);
+
         model.addAttribute("datos",decoItems);
         return "decoitem-list";
     }
 
-    
 
     @GetMapping("/delete")
     String deleteDecoItem(Model model,@RequestParam Long id){
 
-        DecorativeItem decoItem = getById(id);
-
-        decoItems.remove(decoItem);
+        decoItemRepository.deleteById(id);
 
         return "redirect:/decoItem/list";
     }
@@ -47,7 +50,7 @@ public class DecoItemsController {
     @GetMapping("/edit")
     String editDecoItem(Model model,@RequestParam Long id){
 
-        DecorativeItem selected = getById(id);
+        DecorativeItem selected = decoItemRepository.findById(id).orElseThrow();
         model.addAttribute("selected", selected);
 
         return "decoitem-edit";
@@ -56,54 +59,17 @@ public class DecoItemsController {
     @PostMapping("/save")
     String saveData(Model model,@ModelAttribute DecorativeItem dItem){
 
-        Integer index = findById(dItem.getId());
-
-        if(index != -1 ){
-            
-            decoItems.set(index, dItem);
-
-        }else{
-            decoItems.add(dItem);
-        } 
-
+        decoItemRepository.save(dItem);
         return "redirect:/decoItem/list";
     }
 
     @GetMapping("/create")
     String createMonster(Model model){
-        log.info("ENTRO AL CREATE");
 
         model.addAttribute("newItem", new DecorativeItem());
         return "decoitem-create";
     }
 
-    DecorativeItem getById(Long id) {
-
-        DecorativeItem retorno = null;
-
-        for (DecorativeItem item : decoItems) {
-
-            if (id == item.getId()) {
-
-                retorno = item;
-            }
-        }
-
-        return retorno;
-    }
-
-    Integer findById(Long id){
-
-        for (int index = 0; index < decoItems.size(); index++) {
-            
-            if(decoItems.get(index).getId().longValue() == id){
-                
-                return index;
-            }
-
-        }
-
-        return -1;
-    }
+    
 
 }

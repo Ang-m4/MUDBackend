@@ -1,15 +1,23 @@
 package com.desarrollo.web.proyecto.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class DecorativeItem {
-
-
-    private Long id;    
+    
+    @JsonIgnore
+    @Id
+    @GeneratedValue
+    private Long id;
     private String name;
 
     public DecorativeItem(){}
 
-    public DecorativeItem(Long id, String name) {
-        this.id = id;
+    public DecorativeItem(String name) {
         this.name = name;
     }
 

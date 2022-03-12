@@ -1,9 +1,19 @@
 package com.desarrollo.web.proyecto.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Item{
 
-    
+    @JsonIgnore
+    @Id
+    @GeneratedValue
     private Long id;
+
     private String name;
     private String last_updated;
     private int cost;
@@ -13,9 +23,8 @@ public class Item{
 
     public Item(){}
 
-    public Item(Long id, String name, String last_updated, int cost, int weight, String examine, String wiki_url) {
+    public Item(String name, String last_updated, int cost, int weight, String examine, String wiki_url) {
         
-        this.id = id;
         this.name = name;
         this.last_updated = last_updated;
         this.cost = cost;

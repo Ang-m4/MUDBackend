@@ -54,65 +54,6 @@ public class ProyectoApplication {
 		return monsters;
 	}
 
-	@Bean
-    ArrayList<Item> loadItems() {
-		
-		ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		TypeReference<List<Item>> typeReference = new TypeReference<List<Item>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/items.json");
-
-		List<Item> itemList = new ArrayList<>();
-        
-        try {
-            itemList = (mapper.readValue(inputStream,typeReference));
-        } catch (StreamReadException e) {
-            
-            e.printStackTrace();
-        } catch (DatabindException e) {
-            
-            e.printStackTrace();
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }
-		ArrayList<Item> items = new ArrayList<>();
-		items.addAll(itemList);
-
-		return items;
-	}
-
-	@Bean
-    ArrayList<DecorativeItem> loadDecorativeItems() {
-		
-		ObjectMapper mapper = new ObjectMapper();
-
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-		TypeReference<List<DecorativeItem>> typeReference = new TypeReference<List<DecorativeItem>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/objetos-decorativos.json");
-
-		List<DecorativeItem> itemList = new ArrayList<>();
-        
-        try {
-            itemList = (mapper.readValue(inputStream,typeReference));
-        } catch (StreamReadException e) {
-            
-            e.printStackTrace();
-        } catch (DatabindException e) {
-            
-            e.printStackTrace();
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }
-
-		ArrayList<DecorativeItem> items = new ArrayList<>();
-		items.addAll(itemList);
-
-		return items;
-	}
-
     @Bean
     ArrayList<Player> loadPlayers(){
 
@@ -150,7 +91,6 @@ public class ProyectoApplication {
 
     @Bean
     ArrayList<Room> createRooms(){
-        
         ArrayList<Room> retorno = new ArrayList<>();
         return retorno;
     }
