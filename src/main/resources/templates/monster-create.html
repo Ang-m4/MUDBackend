@@ -13,11 +13,6 @@
         <form action="#" th:action="@{/monster/save}" th:object="${selected}" method="post">
 
             <div class="edit-field">
-                <label for="selected-id">Id:</label>
-                <input type="text" th:field="${selected.id}">
-            </div>
-
-            <div class="edit-field">
                 <label for="selected-name">Name:</label>
                 <input type="text" th:field="${selected.name}">
             </div>
