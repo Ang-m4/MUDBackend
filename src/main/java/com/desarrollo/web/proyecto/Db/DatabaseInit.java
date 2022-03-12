@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class DatabaseInit implements ApplicationRunner{
 
-
     @Autowired
     DecorativeItemRepository decoItemRepo;
 
@@ -32,6 +31,9 @@ public class DatabaseInit implements ApplicationRunner{
     @Autowired
     MonsterRepository monsterRepo;
 
+    @Autowired
+    PlayerRepository playerRepo;
+
     /// se ejecuta una sola vez al inicio de la aplicacion.
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -40,8 +42,9 @@ public class DatabaseInit implements ApplicationRunner{
         loadDecoItems();
         loadItems();
         loadMonsters();
+        
+        
     }
-    
     
     void loadDecoItems(){
 
@@ -119,6 +122,20 @@ public class DatabaseInit implements ApplicationRunner{
 		
         monsterRepo.saveAll(monsterList);
 
+    }
+
+    void loadPlayers(){
+
+        Player pA = new Player();
+        pA.setName("Alice");
+
+        Item iA = itemRepo.findById(3l).orElseThrow();
+        Item iB = itemRepo.findById(4l).orElseThrow();
+        
+        pA.getBackpack().add(iA);
+        pA.getBackpack().add(iB);
+
+        playerRepo.save(pA);
     }
 
 }

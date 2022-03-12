@@ -3,7 +3,6 @@ package com.desarrollo.web.proyecto.Model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -19,10 +18,10 @@ public class Item{
     private int cost;
     private int weight;
     private String examine;
-    private String wiki_url;
+    private String wiki_url; 
 
     public Item(){}
-
+    
     public Item(String name, String last_updated, int cost, int weight, String examine, String wiki_url) {
         
         this.name = name;
@@ -89,10 +88,6 @@ public class Item{
         this.wiki_url = wiki_url;
     };
 
-    
 
-
-
-    
 
 }

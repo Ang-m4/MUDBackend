@@ -57,8 +57,8 @@ public class MonsterController {
     @PostMapping("/save")
     String saveData(@ModelAttribute Monster monster,Model model){
        
-        monsterRepository.save(monster);
         
+        monsterRepository.save(monster);
         return "redirect:/monster/list";
     }
     

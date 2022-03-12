@@ -1,9 +1,9 @@
 package com.desarrollo.web.proyecto.Controllers;
 
-import java.util.ArrayList;
-
+import com.desarrollo.web.proyecto.Db.ItemRepository;
+import com.desarrollo.web.proyecto.Db.PlayerRepository;
+import com.desarrollo.web.proyecto.Model.Item;
 import com.desarrollo.web.proyecto.Model.Player;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,20 +18,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PlayerController {
     
     @Autowired
-    ArrayList<Player> players;
+    PlayerRepository playerRepository;
     
+    @Autowired
+    ItemRepository itemRepository;
 
     @GetMapping("/list")
     String showPlayers(Model model){
         
-        model.addAttribute("datos",players);
+        model.addAttribute("datos",playerRepository.findAll());
         return "player-list";
     }
     
     @GetMapping("/edit")
     public String editPlayer(Model model,@RequestParam Long id) {
         
-        Player selected = getById(id);
+        Player selected = playerRepository.findById(id).orElseThrow();
         model.addAttribute("selected",selected);
         
         return "player-edit";
@@ -49,7 +51,7 @@ public class PlayerController {
     @GetMapping("/show")
     String showPlayer(Model model,@RequestParam Long id){
 
-        Player  selected = getById(id);
+        Player  selected = playerRepository.findById(id).orElseThrow();
         model.addAttribute("selected",selected);
         return "player-show";
     }
@@ -58,50 +60,20 @@ public class PlayerController {
     @PostMapping("/save")
     String saveData(@ModelAttribute Player player,Model model){
        
-        Integer index = findById(player.getId());
+        Item iA = itemRepository.findById(41l).orElseThrow();
+        Item iB = itemRepository.findById(45l).orElseThrow();
 
-        if(index != -1 ){
-            
-            players.set(index, player);
+        player.getBackpack().add(iA);
+        player.getBackpack().add(iB);
 
-        }else{
-            players.add(player);
-        }
-        
+        playerRepository.save(player);
         return "redirect:/player/list";
     }
 
     @GetMapping("/delete")
     String deleteMonster(Model model,@RequestParam Long id){
         
-        Player selected = getById(id);
-        players.remove(selected);
-
+        playerRepository.deleteById(id);
         return "redirect:/player/list";
-    }
-
-    Player getById(Long id){
-
-        Player retorno = null;
-
-        for(Player player : players){
-            if( player.getId() == id ){
-                return player;
-            }
-        }
-
-        return retorno;
-    }
-
-    Integer findById(Long id){
-
-        for (int index = 0; index < players.size(); index++) {
-            
-            if(players.get(index).getId().longValue() == id){
-                
-                return index;
-            }
-        }
-        return -1;
     }
 }   
