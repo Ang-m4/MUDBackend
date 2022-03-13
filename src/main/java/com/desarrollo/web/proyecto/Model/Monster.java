@@ -3,11 +3,13 @@ package com.desarrollo.web.proyecto.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,6 +22,7 @@ public class Monster {
     @GeneratedValue
     @JsonIgnore
     private Long id;
+    
     private String name;
     private String last_updated;
     private int attack_level;
@@ -29,18 +32,23 @@ public class Monster {
 
     @ElementCollection
     @CollectionTable(name = "MONSTER_CATEGORY")
-    private List<String> category;
+    private List<String> category; 
 
     private String examine;
     private String wiki_url;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Room> locations;
+
     public Monster (){
         this.category = new ArrayList<>();
+        this.locations = new ArrayList<>();
     }    
 
     public Monster( String name, String last_updated, int attack_level, int defence_slash, int size,
-            int hitpoints, ArrayList<String> category, String examine, String wiki_url) {
-
+            int hitpoints, ArrayList<String> category, String examine, String wiki_url,ArrayList<Room> locations) {
+            
         this.name = name;
         this.last_updated = last_updated;
         this.attack_level = attack_level;
@@ -50,7 +58,7 @@ public class Monster {
         this.category = category;
         this.examine = examine;
         this.wiki_url = wiki_url;
-
+        this.locations = locations;
     }
 
     public Long getId() {
@@ -98,7 +106,7 @@ public class Monster {
     public List<String> getCategory() {
         return category;
     }
-    public void setCategory(ArrayList<String> category) {
+    public void setCategory(List<String> category) {
         this.category = category;
     }
     public String getExamine() {
@@ -113,5 +121,14 @@ public class Monster {
     public void setWiki_url(String wiki_url) {
         this.wiki_url = wiki_url;
     }
+
+    public List<Room> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Room> locations) {
+        this.locations = locations;
+    }
+
 
 }

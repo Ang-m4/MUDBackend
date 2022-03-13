@@ -19,7 +19,8 @@ public class DecorativeItem {
     @GeneratedValue
     private Long id;
     private String name;
-
+    
+    @JsonIgnore
     @ManyToMany(mappedBy = "decorativeItems")
     private Set<Room> locations;
 

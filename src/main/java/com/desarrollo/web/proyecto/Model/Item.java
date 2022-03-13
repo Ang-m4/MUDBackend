@@ -33,6 +33,7 @@ public class Item{
     @ManyToMany(mappedBy = "backpack")
     private Set<Player> obtainedBy;
     
+    @JsonIgnore
     @ManyToMany(mappedBy = "items")
     private Set<Room> locations;
 
@@ -51,6 +52,7 @@ public class Item{
         this.wiki_url = wiki_url;
         this.obtainedBy = obtainedBy;
         this.locations = locations;
+        
     }
 
     public Long getId() {

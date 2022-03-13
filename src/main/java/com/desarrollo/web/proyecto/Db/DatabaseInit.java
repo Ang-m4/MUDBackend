@@ -38,7 +38,6 @@ public class DatabaseInit implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
         
-       
         loadDecoItems();
         loadItems();
         loadMonsters();
@@ -69,18 +68,19 @@ public class DatabaseInit implements ApplicationRunner{
             e.printStackTrace();
         }
 
+       
         decoItemRepo.saveAll(itemList);
     }
 
     void loadItems() {
-		
+        
+      
 		ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		TypeReference<List<Item>> typeReference = new TypeReference<List<Item>>(){};
 		InputStream inputStream = TypeReference.class.getResourceAsStream("/assets/items.json");
 
 		List<Item> itemList = new ArrayList<>();
-        
         try {
             itemList = (mapper.readValue(inputStream,typeReference));
         } catch (StreamReadException e) {
@@ -93,7 +93,7 @@ public class DatabaseInit implements ApplicationRunner{
             
             e.printStackTrace();
         }
-
+        
         itemRepo.saveAll(itemList);
         
 	}

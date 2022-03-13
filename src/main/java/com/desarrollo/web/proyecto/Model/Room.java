@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -40,10 +40,11 @@ public class Room {
     @JoinTable(name = "Room_Items", joinColumns = { @JoinColumn(name = "Room_Id") }, inverseJoinColumns = {
             @JoinColumn(name = "Item_id") })
     private Set<Item> items;
+    
 
-
-    @Transient
-    private Entity monster;
+    @ManyToOne
+    @JoinColumn(name = "monster_id")
+    private Monster monster;
 
     @Transient
     private List<Player> players;
@@ -58,7 +59,7 @@ public class Room {
         this.exits = new ArrayList<>();
     }
 
-    public Room(Long name, Set<DecorativeItem> decorativeItems, Set<Item> items, Entity monster,
+    public Room(Long name, Set<DecorativeItem> decorativeItems, Set<Item> items, Monster monster,
             ArrayList<Player> players, ArrayList<Room> exits) {
         
         this.name = name;
@@ -101,11 +102,11 @@ public class Room {
         this.items = items;
     }
 
-    public Entity getMonster() {
+    public Monster getMonster() {
         return monster;
     }
 
-    public void setMonster(Entity monster) {
+    public void setMonster(Monster monster) {
         this.monster = monster;
     }
 
