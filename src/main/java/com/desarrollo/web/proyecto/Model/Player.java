@@ -14,7 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -50,6 +53,12 @@ public class Player {
     )
     private Set<Item> backpack;
 
+    @JsonIgnore
+    
+    @ManyToOne
+    @JoinColumn(name = "Room_id")
+    private Room location;
+
     Long maxWeight;
     Long weight;
 
@@ -60,7 +69,7 @@ public class Player {
 
     public Player(String name, String last_updated, int attack_level, int defence_slash, int size,
             int hitpoints, List<String> category, String examine, String wiki_url, Set<Item> backpack,
-            Long maxWeight, Long weight) {
+            Long maxWeight, Long weight , Room location){
 
         this.name = name;
         this.last_updated = last_updated;
@@ -74,6 +83,7 @@ public class Player {
         this.backpack = backpack;
         this.maxWeight = maxWeight;
         this.weight = weight;
+        this.location = location;
     }
 
     public Long getId() {
@@ -178,6 +188,14 @@ public class Player {
 
     public void setWeight(Long weight) {
         this.weight = weight;
+    }
+
+    public Room getLocation() {
+        return location;
+    }
+
+    public void setLocation(Room location) {
+        this.location = location;
     }
 
 }

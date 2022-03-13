@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -46,7 +47,8 @@ public class Room {
     @JoinColumn(name = "monster_id")
     private Monster monster;
 
-    @Transient
+
+    @OneToMany(mappedBy = "location",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Player> players;
 
     @Transient
