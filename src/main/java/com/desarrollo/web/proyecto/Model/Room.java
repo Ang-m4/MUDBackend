@@ -1,7 +1,9 @@
 package com.desarrollo.web.proyecto.Model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,7 +30,7 @@ public class Room {
     })
     @JoinTable(name = "Room_decoItems", joinColumns = { @JoinColumn(name = "Room_Id") }, inverseJoinColumns = {
             @JoinColumn(name = "decoItem_id") })
-    private List<DecorativeItem> decorativeItems;
+    private Set<DecorativeItem> decorativeItems;
 
 
     @ManyToMany(cascade = {
@@ -37,11 +39,9 @@ public class Room {
     })
     @JoinTable(name = "Room_Items", joinColumns = { @JoinColumn(name = "Room_Id") }, inverseJoinColumns = {
             @JoinColumn(name = "Item_id") })
-    private List<Item> items;
+    private Set<Item> items;
 
 
-
-    
     @Transient
     private Entity monster;
 
@@ -52,15 +52,15 @@ public class Room {
     private List<Room> exits;
 
     public Room() {
-        this.decorativeItems = new ArrayList<>();
-        this.items = new ArrayList<>();
+        this.decorativeItems = new HashSet<>();
+        this.items = new HashSet<>();
         this.players = new ArrayList<>();
         this.exits = new ArrayList<>();
     }
 
-    public Room(Long id, Long name, ArrayList<DecorativeItem> decorativeItems, ArrayList<Item> items, Entity monster,
+    public Room(Long name, Set<DecorativeItem> decorativeItems, Set<Item> items, Entity monster,
             ArrayList<Player> players, ArrayList<Room> exits) {
-        this.id = id;
+        
         this.name = name;
         this.decorativeItems = decorativeItems;
         this.items = items;
@@ -85,19 +85,19 @@ public class Room {
         this.name = name;
     }
 
-    public List<DecorativeItem> getDecorativeItems() {
+    public Set<DecorativeItem> getDecorativeItems() {
         return decorativeItems;
     }
 
-    public void setDecorativeItems(ArrayList<DecorativeItem> decorativeItems) {
+    public void setDecorativeItems(Set<DecorativeItem> decorativeItems) {
         this.decorativeItems = decorativeItems;
     }
 
-    public List<Item> getItems() {
+    public Set<Item> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items) {
+    public void setItems(Set<Item> items) {
         this.items = items;
     }
 
