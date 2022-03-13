@@ -34,6 +34,9 @@ public class DatabaseInit implements ApplicationRunner{
     @Autowired
     PlayerRepository playerRepo;
 
+    @Autowired
+    RoomRepository roomRepo;
+
     /// se ejecuta una sola vez al inicio de la aplicacion.
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -41,6 +44,12 @@ public class DatabaseInit implements ApplicationRunner{
         loadDecoItems();
         loadItems();
         loadMonsters();
+
+
+        loadRooms();
+
+        loadPlayers();
+        
         
     }
     
@@ -127,14 +136,56 @@ public class DatabaseInit implements ApplicationRunner{
 
         Player pA = new Player();
         pA.setName("Alice");
-
-        Item iA = itemRepo.findById(3l).orElseThrow();
-        Item iB = itemRepo.findById(4l).orElseThrow();
+        pA.setAttack_level(30);
+        pA.setSize(30);
         
+        Player pB = new Player();
+        pB.setName("Bob");
+        pB.setAttack_level(20);
+        pB.setSize(20);
+
+        pA.getCategory().add("Categoria Uno");
+        pA.getCategory().add("Categoria Dos");
+
+        pB.getCategory().add("Categoria Uno");
+        pB.getCategory().add("Categoria Dos");
+
+        Item iA = itemRepo.findById(45l).orElseThrow();
+        Item iB = itemRepo.findById(48l).orElseThrow();
+        
+        playerRepo.save(pA);
+        playerRepo.save(pB);
+
         pA.getBackpack().add(iA);
         pA.getBackpack().add(iB);
 
+        pB.getBackpack().add(iA);
+        pB.getBackpack().add(iB);
+
+        pA.setLocation(roomRepo.findById(137l).orElseThrow());
+        pB.setLocation(roomRepo.findById(137l).orElseThrow());
+
         playerRepo.save(pA);
+        playerRepo.save(pB);
+        
+    }
+
+    void loadRooms(){
+
+        Room rA = new Room();
+        
+        rA.setName("ROOM_1");
+
+        roomRepo.save(rA);
+        Item iA = itemRepo.findById(45l).orElseThrow();
+        DecorativeItem diA = decoItemRepo.findById(2l).orElseThrow();
+        Monster mA = monsterRepo.findById(130l).orElseThrow();
+        rA.getItems().add(iA);
+        rA.getDecorativeItems().add(diA);
+        rA.setMonster(mA);
+
+        roomRepo.save(rA);
+
     }
 
 }

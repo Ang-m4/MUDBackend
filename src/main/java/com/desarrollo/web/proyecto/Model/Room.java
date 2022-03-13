@@ -22,8 +22,7 @@ public class Room {
     @Id
     @GeneratedValue
     private Long id;
-
-    private Long name;
+    private String name;
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
@@ -66,7 +65,7 @@ public class Room {
         this.exits = new HashSet<>();
     }
 
-    public Room(Long name, Set<DecorativeItem> decorativeItems, Set<Item> items, Monster monster,
+    public Room(String name, Set<DecorativeItem> decorativeItems, Set<Item> items, Monster monster,
             ArrayList<Player> players, Set<Room> exits) {
 
         this.name = name;
@@ -85,11 +84,11 @@ public class Room {
         this.id = id;
     }
 
-    public Long getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Long name) {
+    public void setName(String name) {
         this.name = name;
     }
 
