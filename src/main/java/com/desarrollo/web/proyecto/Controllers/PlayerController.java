@@ -2,7 +2,6 @@ package com.desarrollo.web.proyecto.Controllers;
 
 import com.desarrollo.web.proyecto.Db.ItemRepository;
 import com.desarrollo.web.proyecto.Db.PlayerRepository;
-import com.desarrollo.web.proyecto.Model.Item;
 import com.desarrollo.web.proyecto.Model.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,11 +55,6 @@ public class PlayerController {
     @PostMapping("/save")
     String saveData(@ModelAttribute Player player,Model model){
        
-        Item iA = itemRepository.findById(41l).orElseThrow();
-        Item iB = itemRepository.findById(45l).orElseThrow();
-
-        player.getBackpack().add(iA);
-        player.getBackpack().add(iB);
         playerRepository.save(player);
         return "redirect:/player/list";
     }

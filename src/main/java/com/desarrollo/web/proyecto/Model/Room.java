@@ -41,29 +41,34 @@ public class Room {
     @JoinTable(name = "Room_Items", joinColumns = { @JoinColumn(name = "Room_Id") }, inverseJoinColumns = {
             @JoinColumn(name = "Item_id") })
     private Set<Item> items;
-    
 
+    
     @ManyToOne
     @JoinColumn(name = "monster_id")
     private Monster monster;
 
-
-    @OneToMany(mappedBy = "location",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Player> players;
 
+    @ManyToMany
+    @JoinTable(name = "Exits", joinColumns = @JoinColumn(name = "Room_id"), inverseJoinColumns = @JoinColumn(name = "Exit_id"))
+    private Set<Room> exits;
+
+    @ManyToMany
+    @JoinTable(name = "Exits", joinColumns = @JoinColumn(name = "Exit_id"), inverseJoinColumns = @JoinColumn(name = "Room_id"))
     @Transient
-    private List<Room> exits;
+    private Set<Room> exitOf;
 
     public Room() {
         this.decorativeItems = new HashSet<>();
         this.items = new HashSet<>();
         this.players = new ArrayList<>();
-        this.exits = new ArrayList<>();
+        this.exits = new HashSet<>();
     }
 
     public Room(Long name, Set<DecorativeItem> decorativeItems, Set<Item> items, Monster monster,
-            ArrayList<Player> players, ArrayList<Room> exits) {
-        
+            ArrayList<Player> players, Set<Room> exits) {
+
         this.name = name;
         this.decorativeItems = decorativeItems;
         this.items = items;
@@ -116,16 +121,24 @@ public class Room {
         return players;
     }
 
-    public void setPlayers(ArrayList<Player> players) {
+    public void setPlayers(List<Player> players) {
         this.players = players;
     }
 
-    public List<Room> getExits() {
+    public Set<Room> getExits() {
         return exits;
     }
 
-    public void setExits(ArrayList<Room> exits) {
+    public void setExits(Set<Room> exits) {
         this.exits = exits;
+    }
+
+    public Set<Room> getExitOf() {
+        return exitOf;
+    }
+
+    public void setExitOf(Set<Room> exitOf) {
+        this.exitOf = exitOf;
     }
 
 }
