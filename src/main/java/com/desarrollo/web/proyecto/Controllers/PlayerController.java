@@ -1,8 +1,14 @@
 package com.desarrollo.web.proyecto.Controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import com.desarrollo.web.proyecto.Db.ItemRepository;
 import com.desarrollo.web.proyecto.Db.PlayerRepository;
+import com.desarrollo.web.proyecto.Model.Item;
 import com.desarrollo.web.proyecto.Model.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +28,8 @@ public class PlayerController {
     @Autowired
     ItemRepository itemRepository;
 
+    Logger log = LoggerFactory.getLogger(getClass());
+
     @GetMapping("/list")
     String showPlayers(Model model){
         
@@ -30,7 +38,7 @@ public class PlayerController {
     }
     
     @GetMapping("/edit")
-    public String editPlayer(Model model,@RequestParam Long id) {
+    String editPlayer(Model model,@RequestParam Long id) {
         
         Player selected = playerRepository.findById(id).orElseThrow();
         model.addAttribute("selected",selected);
@@ -53,8 +61,24 @@ public class PlayerController {
     }
 
     @PostMapping("/save")
-    String saveData(@ModelAttribute Player player,Model model){
+    String saveData(@ModelAttribute Player player,@RequestParam String categories,@RequestParam String items){
        
+
+        log.info(categories);
+        log.info(items);
+    
+        ArrayList<String> catego = new ArrayList<>(Arrays.asList(categories.split(",")));
+        player.setCategory(catego);
+        String[] itemIds = items.split(",");
+        for (int i = 0; i < itemIds.length; i++) {
+            
+            if(itemRepository.findById(Long.parseLong(itemIds[i])).isPresent()){
+                Item item = itemRepository.findById(Long.parseLong(itemIds[i])).orElseThrow();
+                player.getBackpack().add(item);
+            }else{
+                log.info("No se encontro el item descrito");
+            }
+        }
         playerRepository.save(player);
         return "redirect:/player/list";
     }

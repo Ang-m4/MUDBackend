@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -61,6 +62,15 @@ public class Player {
     Long maxWeight;
     Long weight;
 
+    @JsonIgnore
+    @Transient
+    String items;
+
+    @JsonIgnore
+    @Transient
+    String categories;
+
+    
     public Player() {
         category = new ArrayList<>();
         backpack = new HashSet<>();
@@ -196,5 +206,24 @@ public class Player {
     public void setLocation(Room location) {
         this.location = location;
     }
+
+    public String getItems() {
+        return items;
+    }
+
+    public void setItems(String items) {
+        this.items = items;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
+
+    
+
 
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1 th:text="'Room: '+ ${selected.name}"></h1>
+
+        <div class="show-field">
+            <label for="selected-id">Id:</label>
+            <span th:text="${selected.id}"></span>
+        </div>
+
+        <div class="show-field">
+            <label for="selected-name">Name:</label>
+            <span type="text" th:text="${selected.name}"></span>
+        </div>
+
+        <div class="show-field">
+
+            <label for="selected-Decoitems">DecoItems:</label>
+
+            <ul>
+                <li th:each=" type: ${selected.decorativeItems}">
+                    <span th:text="${type.name}"></span>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="show-field">
+
+            <label for="selected-items">Items:</label>
+
+            <ul>
+                <li th:each=" type: ${selected.items}">
+                    <span th:text="${type.name}"></span>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="show-field">
+
+            <label for="selected-players">Players:</label>
+            <ul>
+                <li th:each=" type: ${selected.players}">
+                    <span th:text="${type.name}"></span>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="show-field">
+
+            <label for="selected-monster">Monster:</label>
+            <span type="text" th:text=" ${selected.monster != null} ? ${selected.monster.name} : 'Not a monster There' " ></span>
+
+        </div>
+
+        <div class="show-field">
+
+            <label for="selected-exits">Exits:</label>
+            <ul>
+                <li th:each=" type: ${selected.exits}">
+                    <span th:text="${type.name}"></span>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

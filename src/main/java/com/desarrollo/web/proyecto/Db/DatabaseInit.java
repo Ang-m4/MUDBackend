@@ -1,17 +1,14 @@
 package com.desarrollo.web.proyecto.Db;
 
 import com.desarrollo.web.proyecto.Model.DecorativeItem;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.desarrollo.web.proyecto.Model.*;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -179,12 +176,33 @@ public class DatabaseInit implements ApplicationRunner{
         roomRepo.save(rA);
         Item iA = itemRepo.findById(45l).orElseThrow();
         DecorativeItem diA = decoItemRepo.findById(2l).orElseThrow();
+        DecorativeItem diB = decoItemRepo.findById(3l).orElseThrow();
         Monster mA = monsterRepo.findById(130l).orElseThrow();
         rA.getItems().add(iA);
         rA.getDecorativeItems().add(diA);
+        rA.getDecorativeItems().add(diB);
         rA.setMonster(mA);
 
         roomRepo.save(rA);
+
+        
+        Room rB = new Room();
+        
+        rB.setName("ROOM_2");
+
+        roomRepo.save(rB);
+        Item iB = itemRepo.findById(46l).orElseThrow();
+        DecorativeItem diC = decoItemRepo.findById(7l).orElseThrow();
+        DecorativeItem diD = decoItemRepo.findById(5l).orElseThrow();
+        Monster mB = monsterRepo.findById(131l).orElseThrow();
+        rB.getItems().add(iB);
+        rB.getDecorativeItems().add(diC);
+        rB.getDecorativeItems().add(diD);
+        rB.setMonster(mB);
+
+        rB.getExits().add(rA);
+
+        roomRepo.save(rB);
 
     }
 

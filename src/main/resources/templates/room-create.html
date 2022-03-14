@@ -20,8 +20,7 @@
 
                         <div>
                             <form action="#" th:action="@{/room/addItem}" th:object="${room}" method="post">
-                                Id: <input name="idItem" th:value="${item.id}" type="hidden" /> <br/>
-                                <input type="submit" value="Agregar">
+                                Id: <input name="idItem" th:value="${item.id}" type="hidden" />
                             </form>
                         </div>
                     </li>
@@ -42,12 +41,6 @@
                             Id: <span th:text="${monster.id}"></span>
                         </div>
 
-                        <div>
-                            <a th:href="@{show (id = ${monster.id})}" th:text="agregar"> </a>
-                        </div>
-
-
-
                     </li>
                 </ul>
             </div>
@@ -67,12 +60,6 @@
                             Id: <span th:text="${decoItem.id}"></span>
                         </div>
 
-                        <div>
-                            <a th:href="@{show (id = ${decoItem.id})}" th:text="agregar"> </a>
-                        </div>
-
-
-
                     </li>
                 </ul>
             </div>
@@ -90,17 +77,12 @@
                         <div class="">
                             Id: <span th:text="${player.id}"></span>
                         </div>
-
-                        <div>
-                            <a th:href="@{show (id = ${player.id})}" th:text="agregar"> </a>
-                        </div>
-
-
                     </li>
                 </ul>
             </div>
         </div>
 
+        
         <div class=list-container>
             <h4> ROOMS: </h4>
             <div th:fragment="list-fragment" class="list">
@@ -113,11 +95,6 @@
                         <div class="">
                             Id: <span th:text="${room.id}"></span>
                         </div>
-
-                        <div>
-                            <a th:href="@{show (id = ${room.id})}" th:text="agregar"> </a>
-                        </div>
-
 
                     </li>
                 </ul>

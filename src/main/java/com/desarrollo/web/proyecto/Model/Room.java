@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Room {
@@ -57,6 +58,26 @@ public class Room {
     @JoinTable(name = "Exits", joinColumns = @JoinColumn(name = "Exit_id"), inverseJoinColumns = @JoinColumn(name = "Room_id"))
     @Transient
     private Set<Room> exitOf;
+
+    @JsonIgnore
+    @Transient
+    String decoItemsAdd;
+
+    @JsonIgnore
+    @Transient
+    String itemsAdd;
+
+    @JsonIgnore
+    @Transient
+    String playersAdd;
+
+    @JsonIgnore
+    @Transient
+    String monsterAdd;
+
+    @JsonIgnore
+    @Transient
+    String exitsAdd;
 
     public Room() {
         this.decorativeItems = new HashSet<>();
@@ -140,4 +161,96 @@ public class Room {
         this.exitOf = exitOf;
     }
 
+    public String getDecoItemsAdd() {
+
+        if(decorativeItems.size() != 0){
+
+            String retorno = "";
+
+            for(DecorativeItem item: decorativeItems){
+
+                retorno = retorno + item.getId() + ",";
+            }
+
+            return retorno;
+
+        }
+
+        return decoItemsAdd;
+    }
+
+    public void setDecoItemsAdd(String decoItemsAdd) {
+        this.decoItemsAdd = decoItemsAdd;
+    }
+
+    public String getItemsAdd() {
+
+        if(items.size() != 0){
+
+            String retorno = "";
+            for(Item item: items){
+                retorno = retorno + item.getId() + ",";
+            }
+            return retorno;
+        }
+        
+        return itemsAdd;
+    }
+
+    public void setItemsAdd(String itemsAdd) {
+
+        this.itemsAdd = itemsAdd;
+    }
+
+    public String getPlayersAdd() {
+
+        if(players.size() != 0){
+
+            String retorno = "";
+            for(Player item: players){
+                retorno = retorno + item.getId() + ",";
+            }
+            return retorno;
+        }
+
+        return playersAdd;
+    }
+
+    public void setPlayersAdd(String playersAdd) {
+        this.playersAdd = playersAdd;
+    }
+
+    public String getMonsterAdd() {
+
+        if(monster != null){
+
+            return this.getMonster().getId().toString();
+
+        }
+
+        return monsterAdd;
+    }
+
+    public void setMonsterAdd(String monsterAdd) {
+        this.monsterAdd = monsterAdd;
+    }
+
+    public String getExitsAdd() {
+
+        if(exits.size() != 0){
+
+            String retorno = "";
+            for(Room item: exits){
+                retorno = retorno + item.getId() + ",";
+            }
+            return retorno;
+        }
+
+        return exitsAdd;
+    }
+
+    public void setExitsAdd(String exitsAdd) {
+        this.exitsAdd = exitsAdd;
+    }
+        
 }
