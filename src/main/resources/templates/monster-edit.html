@@ -43,13 +43,8 @@
 
             <div class="edit-field">
                 <label for="selected-category">category:</label>
-
-                <ul>
-                    <li th:each=" type: ${selected.category}">
-                        <input type="text">
-                    </li>
-                </ul>
-
+                <input type="text" th:field="${selected.categories}">
+                <p class="explanation">"Categoria_a, cateogoria_b... categoria_n"</p>
             </div>
 
             <div class="edit-field">

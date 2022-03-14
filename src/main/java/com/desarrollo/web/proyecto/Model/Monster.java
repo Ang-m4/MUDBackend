@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -40,6 +41,10 @@ public class Monster {
     @JsonIgnore
     @OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Room> locations;
+
+    @JsonIgnore
+    @Transient
+    String categories;
 
     public Monster (){
         this.category = new ArrayList<>();
@@ -128,6 +133,14 @@ public class Monster {
 
     public void setLocations(List<Room> locations) {
         this.locations = locations;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategorias(String categories) {
+        this.categories = categories;
     }
 
 

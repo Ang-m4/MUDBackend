@@ -123,7 +123,7 @@ public class Room {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
-
+    
     public Set<Room> getExits() {
         return exits;
     }

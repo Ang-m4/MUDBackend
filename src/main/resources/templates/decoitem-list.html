@@ -13,23 +13,23 @@
             <h3>Todos los objetos decorativos:</h3>
             <div th:fragment="list-fragment" class="list">
                 <ul>
+
                     <li th:each="dato: ${datos}" class="list_item">
                         <div class="">
                             Nombre: <span th:text="${dato.name}" ></span>
                         </div>
-    
+                        
                         <div class="">
-                            Id: <span th:text="${dato.id}" ></span>
+                            Id: <span th:text="${dato.id}"></span>
                         </div>
                         
                         <div>   
                             <a th:href="@{edit (id = ${dato.id})}" th:text="Editar"> </a>
                         </div>
-    
+                        
                         <div>   
                             <a th:href="@{delete (id = ${dato.id})}" th:text="Eliminar"> </a>
                         </div>
-                        
                     </li>   
                 </ul>
             </div>
@@ -37,6 +37,10 @@
 
         <a th:href="@{create}">
             <button> Crear </button>
+        </a>
+
+        <a th:href="@{/}">
+            <button> volver </button>
         </a>
 
     </div>

@@ -1,5 +1,8 @@
 package com.desarrollo.web.proyecto.Controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import com.desarrollo.web.proyecto.Db.MonsterRepository;
 import com.desarrollo.web.proyecto.Model.Monster;
 import org.slf4j.Logger;
@@ -49,24 +52,26 @@ public class MonsterController {
     @GetMapping("/delete")
     String deleteMonster(Model model,@RequestParam Long id){
         
-        
         monsterRepository.deleteById(id);
         return "redirect:/monster/list";
+
     }
 
     @PostMapping("/save")
-    String saveData(@ModelAttribute Monster monster,Model model){
-       
+    String saveData(@ModelAttribute Monster monster,@RequestParam String categories){
         
+        ArrayList<String> catego = new ArrayList<>(Arrays.asList(categories.split(",")));
+        monster.setCategory(catego);
         monsterRepository.save(monster);
         return "redirect:/monster/list";
     }
     
     @GetMapping("/create")
     String createMonster(Model model){
-
+        
         model.addAttribute("selected", new Monster());
         return "monster-create";
+
     }
     
 }

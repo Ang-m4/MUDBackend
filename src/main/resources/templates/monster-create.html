@@ -10,7 +10,8 @@
     <div class="main-container">
         <h1 th:text="'Create: '"></h1>
 
-        <form action="#" th:action="@{/monster/save}" th:object="${selected}" method="post">
+        <form action="#" th:action="@{/monster/save}" th:object="${selected}"
+            method="post">
 
             <div class="edit-field">
                 <label for="selected-name">Name:</label>
@@ -39,13 +40,8 @@
 
             <div class="edit-field">
                 <label for="selected-category">category:</label>
-
-                <ul>
-                    <li th:each=" type: ${selected.category}">
-                        <input type="text">
-                    </li>
-                </ul>
-
+                <input type="text" th:field="${selected.categories}">
+                <p class="explanation">"Categoria_a, cateogoria_b... categoria_n"</p>
             </div>
 
             <div class="edit-field">
@@ -64,14 +60,7 @@
 
         </form>
 
-        </form>
-
-
-
     </div>
-
-
-
 
 </body>
 
