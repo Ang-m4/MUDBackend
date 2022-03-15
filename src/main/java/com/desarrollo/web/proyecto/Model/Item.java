@@ -30,6 +30,9 @@ public class Item{
     private String examine;
     private String wiki_url; 
 
+
+
+    
     @ManyToMany(mappedBy = "backpack")
     private Set<Player> obtainedBy;
     

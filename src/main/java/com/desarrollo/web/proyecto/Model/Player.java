@@ -208,6 +208,16 @@ public class Player {
     }
 
     public String getItems() {
+
+        if(backpack.size() != 0){
+
+            String retorno = "";
+            for(Item item: backpack){
+                retorno = retorno + item.getId() + ",";
+            }
+            return retorno;
+        }
+
         return items;
     }
 
@@ -216,14 +226,19 @@ public class Player {
     }
 
     public String getCategories() {
-        return categories;
+
+        String retorno = "";
+        for(String cate: category){
+
+            retorno = retorno + cate + ",";
+        }
+
+        return retorno;
     }
 
     public void setCategories(String categories) {
         this.categories = categories;
     }
-
-    
 
 
 }

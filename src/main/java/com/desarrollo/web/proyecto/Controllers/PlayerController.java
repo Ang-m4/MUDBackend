@@ -42,6 +42,7 @@ public class PlayerController {
         
         Player selected = playerRepository.findById(id).orElseThrow();
         model.addAttribute("selected",selected);
+        model.addAttribute("items", itemRepository.findAll());
         return "player-edit";
     }
     
@@ -49,6 +50,7 @@ public class PlayerController {
     String createPlayer(Model model){
         
         model.addAttribute("selected",new Player());
+        model.addAttribute("items", itemRepository.findAll());
         return "player-create";
     }
 
@@ -63,22 +65,22 @@ public class PlayerController {
     @PostMapping("/save")
     String saveData(@ModelAttribute Player player,@RequestParam String categories,@RequestParam String items){
        
-
-        log.info(categories);
-        log.info(items);
-    
         ArrayList<String> catego = new ArrayList<>(Arrays.asList(categories.split(",")));
         player.setCategory(catego);
         String[] itemIds = items.split(",");
-        for (int i = 0; i < itemIds.length; i++) {
+
+        if(!itemIds[0].isEmpty()){
+            for (int i = 0; i < itemIds.length; i++) {
             
-            if(itemRepository.findById(Long.parseLong(itemIds[i])).isPresent()){
-                Item item = itemRepository.findById(Long.parseLong(itemIds[i])).orElseThrow();
-                player.getBackpack().add(item);
-            }else{
-                log.info("No se encontro el item descrito");
+                if(itemRepository.findById(Long.parseLong(itemIds[i])).isPresent()){
+                    Item item = itemRepository.findById(Long.parseLong(itemIds[i])).orElseThrow();
+                    player.getBackpack().add(item);
+                }else{
+                    log.info("No se encontro el item descrito");
+                }
             }
         }
+        
         playerRepository.save(player);
         return "redirect:/player/list";
     }

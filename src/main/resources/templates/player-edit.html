@@ -73,6 +73,31 @@
             </div>
 
         </form>
+
+        <div>
+
+            <div>
+                <h4> ITEMS GUIDE </h4>
+                    <div th:fragment="list-fragment" class="list">
+                        <ul>
+                            <li th:each="item: ${items}" class="list_item">
+                                <div class="">
+                                    Nombre: <span th:text="${item.name}"></span>
+                                </div>
+    
+                                <div>
+                                    Id: <input name="idItem" th:value="${item.id}" type="hidden" />
+                                </div>
+    
+                                <div>
+                                    <a th:href="@{/item/show (id = ${item.id})}" th:text="Ver"> </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+        
     </div>
 
 </body>

@@ -9,65 +9,90 @@
     <div class="main-container">
         <h1 th:text="'Create: '"></h1>
 
-        <form action="#" th:action="@{/player/save}" th:object="${selected}" method="post">
+        <div>
 
-            <div class="edit-field">
-                <label for="selected-name">Name:</label>
-                <input type="text" th:field="${selected.name}">
-            </div>
+            <form action="#" th:action="@{/player/save}" th:object="${selected}" method="post">
 
-            <div class="edit-field">
-                <label for="selected-lastUpdated">Last Updated:</label>
-                <input type="text" th:field="${selected.last_updated}">
-            </div>
+                <div class="edit-field">
+                    <label for="selected-name">Name:</label>
+                    <input type="text" th:field="${selected.name}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-lastUpdated">Last Updated:</label>
+                    <input type="text" th:field="${selected.last_updated}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-attack_level">Attack_level:</label>
+                    <input type="text" th:field="${selected.attack_level}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-defence_slash">defence_slash:</label>
+                    <input type="text" th:field="${selected.defence_slash}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-size">size:</label>
+                    <input type="text" th:field="${selected.size}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-hitpoints">Hitpoints:</label>
+                    <input type="text" th:field="${selected.hitpoints}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-category">category:</label>
+                    <input type="text" th:field="${selected.categories}">
+                    <p class="explanation">"Categoria_a, cateogoria_b... categoria_n"</p>
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-backpack">Backpack:</label>
+                    <input type="text" th:field="${selected.items}">
+                    <p class="explanation">"ItemId_1, ItemId_2... ItemId_n"</p>
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-examine">Examine:</label>
+                    <input type="text" th:field="${selected.examine}">
+                </div>
+    
+                <div class="edit-field">
+                    <label for="selected-wiki_url">Wiki Url:</label>
+                    <input type="text" th:field="${selected.wiki_url}">
+                </div>
+    
+                <div class="edit-field">
+                    <button type="submit"> Guardar </button>
+                </div>
+    
+            </form>
+        </div>
 
-            <div class="edit-field">
-                <label for="selected-attack_level">Attack_level:</label>
-                <input type="text" th:field="${selected.attack_level}">
-            </div>
+        <div>
+            <h4> ITEMS GUIDE </h4>
+                <div th:fragment="list-fragment" class="list">
+                    <ul>
+                        <li th:each="item: ${items}" class="list_item">
+                            <div class="">
+                                Nombre: <span th:text="${item.name}"></span>
+                            </div>
 
-            <div class="edit-field">
-                <label for="selected-defence_slash">defence_slash:</label>
-                <input type="text" th:field="${selected.defence_slash}">
-            </div>
+                            <div>
+                                Id: <input name="idItem" th:value="${item.id}" type="hidden" />
+                            </div>
 
-            <div class="edit-field">
-                <label for="selected-size">size:</label>
-                <input type="text" th:field="${selected.size}">
-            </div>
+                            <div>
+                                <a th:href="@{/item/show (id = ${item.id})}" th:text="Ver"> </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </div>
 
-            <div class="edit-field">
-                <label for="selected-hitpoints">Hitpoints:</label>
-                <input type="text" th:field="${selected.hitpoints}">
-            </div>
-
-            <div class="edit-field">
-                <label for="selected-category">category:</label>
-                <input type="text" th:field="${selected.categories}">
-                <p class="explanation">"Categoria_a, cateogoria_b... categoria_n"</p>
-            </div>
-
-            <div class="edit-field">
-                <label for="selected-backpack">Backpack:</label>
-                <input type="text" th:field="${selected.items}">
-                <p class="explanation">"ItemId_1, ItemId_2... ItemId_n"</p>
-            </div>
-
-            <div class="edit-field">
-                <label for="selected-examine">Examine:</label>
-                <input type="text" th:field="${selected.examine}">
-            </div>
-
-            <div class="edit-field">
-                <label for="selected-wiki_url">Wiki Url:</label>
-                <input type="text" th:field="${selected.wiki_url}">
-            </div>
-
-            <div class="edit-field">
-                <button type="submit"> Guardar </button>
-            </div>
-
-        </form>
     </div>
 
 </body>

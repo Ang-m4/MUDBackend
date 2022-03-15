@@ -136,7 +136,14 @@ public class Monster {
     }
 
     public String getCategories() {
-        return categories;
+
+        String retorno = "";
+        for(String cate: category){
+
+            retorno = retorno + cate + ",";
+        }
+
+        return retorno;
     }
 
     public void setCategorias(String categories) {

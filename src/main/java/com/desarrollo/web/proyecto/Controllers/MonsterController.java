@@ -38,7 +38,6 @@ public class MonsterController {
         Monster selected = monsterRepository.findById(id).orElseThrow();
         model.addAttribute("selected",selected);
         return "monster-show";
-    
     }
 
     @GetMapping("/edit")

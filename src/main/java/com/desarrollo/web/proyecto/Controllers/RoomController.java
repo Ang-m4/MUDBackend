@@ -48,11 +48,9 @@ public class RoomController {
     @GetMapping("/show")
     String showRoom(Model model, @RequestParam Long id) {
 
-        log.info(" El id del cuarto a mostrar es " + id);
+        
         Room selected = roomRepository.findById(id).orElseThrow();
-        log.info(" Encontro el cuarto " + id);
         model.addAttribute("selected", selected);
-        log.info(" Agrego el cuarto " + id);
         return "room-show";
     }
 
@@ -60,6 +58,11 @@ public class RoomController {
     String editRoom(Model model, @RequestParam Long id) {
 
         Room selected = roomRepository.findById(id).orElseThrow();
+        model.addAttribute("items",itemRepository.findAll());
+        model.addAttribute("players",playerRepository.findAll());
+        model.addAttribute("rooms",roomRepository.findAll());
+        model.addAttribute("decoItems",decorativeItemRepository.findAll());
+        model.addAttribute("monsters",monsterRepository.findAll());
         model.addAttribute("selected", selected);
         return "room-edit";
     }
@@ -71,14 +74,6 @@ public class RoomController {
             @RequestParam String playersAdd,
             @RequestParam String monsterAdd,
             @RequestParam String exitsAdd) {
-
-        log.info(decoItemsAdd);
-        log.info(itemsAdd);
-        log.info(playersAdd);
-        log.info(monsterAdd);
-        log.info(exitsAdd);
-        log.info(" El id del cuarto es " + room.getId());
-        log.info(" El nombre del cuarto es " + room.getName());
 
         String[] listIds = decoItemsAdd.split(",");
 
@@ -168,12 +163,12 @@ public class RoomController {
     @GetMapping("/create")
     String createRoom(Model model) {
 
-
         model.addAttribute("items",itemRepository.findAll());
         model.addAttribute("players",playerRepository.findAll());
         model.addAttribute("rooms",roomRepository.findAll());
         model.addAttribute("decoItems",decorativeItemRepository.findAll());
         model.addAttribute("monsters",monsterRepository.findAll());
+        model.addAttribute("selected", new Room());
         return "room-create";
     }
 

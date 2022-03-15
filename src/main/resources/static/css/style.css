@@ -8,7 +8,7 @@
 
 .list {
     overflow: auto;
-    height: 400px;
+    height: 150px;
     width: 250px;
     border: 2px solid black;
 }
@@ -41,9 +41,12 @@ button {
 }
 
 .explanation{
-
     margin-left: 20px;
     color: brown;
     font-size: 10px;
+}
 
+.division{
+    width: 50%;
+    float: left;
 }

@@ -10,55 +10,176 @@
     <div class="main-container">
         <h1 th:text="'Editing Room: '+ ${selected.name}"></h1>
 
-        <form action="#" th:action="@{/room/save}" th:object="${selected}" method="post">
+        <div class="division">
 
-            <div class="show-field">
-                <label for="selected-id">Id:</label>
-                <input th:text="${selected.id}" th:field="${selected.id}" type="hidden">
+            <h3>LISTA DE ENTIDADES:</h3>
+
+            <div class=list-container>
+
+                <h4> ITEMS </h4>
+                <div th:fragment="list-fragment" class="list">
+                    <ul>
+                        <li th:each="item: ${items}" class="list_item">
+                            <div class="">
+                                Nombre: <span th:text="${item.name}"></span>
+                            </div>
+
+                            <div>
+                                Id: <input name="idItem" th:value="${item.id}" type="hidden" />
+                            </div>
+
+                            <div>
+                                <a th:href="@{/item/show (id = ${item.id})}" th:text="Ver"> </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="show-field">
-                <label for="selected-name">Name:</label>
-                <input type="text" th:field="${selected.name}">
+            <div class=list-container>
+                <h4> MONSTERS </h4>
+                <div th:fragment="list-fragment" class="list">
+                    <ul>
+                        <li th:each="monster: ${monsters}" class="list_item">
+                            <div class="">
+                                Nombre: <span th:text="${monster.name}"></span>
+                            </div>
+
+                            <div class="">
+                                Id: <span th:text="${monster.id}"></span>
+                            </div>
+
+                            <div>
+                                <a th:href="@{/monster/show (id = ${monster.id})}" th:text="Ver"> </a>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+
             </div>
 
-            <div class="show-field">
+            <div class=list-container>
+                <h4> DECORATIVOS </h4>
+                <div th:fragment="list-fragment" class="list">
+                    <ul>
+                        <li th:each="decoItem: ${decoItems}" class="list_item">
+                            <div class="">
+                                Nombre: <span th:text="${decoItem.name}"></span>
+                            </div>
 
-                <label for="selected-Decoitems">DecoItems:</label>
-                <input type="text" th:field="${selected.decoItemsAdd}">
+                            <div class="">
+                                Id: <span th:text="${decoItem.id}"></span>
+                            </div>
 
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="show-field">
-                <label for="selected-items">Items:</label>
-                <input type="text" th:field="${selected.itemsAdd}">
-            </div>      
+            <div class=list-container>
+                <h4> PLAYERS </h4>
+                <div th:fragment="list-fragment" class="list">
+                    <ul>
+                        <li th:each="player: ${players}" class="list_item">
+                            <div class="">
+                                Nombre: <span th:text="${player.name}"></span>
+                            </div>
 
-            <div class="show-field">
-                <label for="selected-players">Players:</label>
-                <input type="text" th:field="${selected.playersAdd}">
+                            <div class="">
+                                Id: <span th:text="${player.id}"></span>
+                            </div>
+
+                            <div>
+                                <a th:href="@{/player/show (id = ${player.id})}" th:text="Ver"> </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="show-field">
-                <label for="selected-monster">Monster:</label>
-                <input type="text" th:field="${selected.monsterAdd}">
+
+            <div class=list-container>
+                <h4> ROOMS: </h4>
+                <div th:fragment="list-fragment" class="list">
+                    <ul>
+                        <li th:each="room: ${rooms}" class="list_item">
+                            <div class="">
+                                Nombre: <span th:text="${room.name}"></span>
+                            </div>
+
+                            <div class="">
+                                Id: <span th:text="${room.id}"></span>
+                            </div>
+
+                            <div>
+                                <a th:href="@{/room/show (id = ${room.id})}" th:text="Ver"> </a>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="show-field">
-                <label for="selected-exits">Exits</label>
-                <input type="text" th:field="${selected.exitsAdd}">
-            </div>
 
-            <div class="edit-field">
-                <button type="submit"> Guardar </button>
-            </div>
+        </div>
 
-        </form>
+        <div class="division">
+            
+            <form action="#" th:action="@{/room/save}" th:object="${selected}" method="post">
 
-    </div>
-
+                <div class="show-field">
+                    <label for="selected-id">Id:</label>
+                    <input th:text="${selected.id}" th:field="${selected.id}" type="hidden">
+                </div>
     
+                <div class="show-field">
+                    <label for="selected-name">Name:</label>
+                    <input type="text" th:field="${selected.name}">
+                </div>
+    
+                <div class="show-field">
+    
+                    <label for="selected-Decoitems">DecoItems:</label>
+                    <input type="text" th:field="${selected.decoItemsAdd}">
+                    <p class="explanation">"DecoItemId_1, DecoItemId_2... DecoItemId_n"</p>
+    
+                </div>
+    
+                <div class="show-field">
+                    <label for="selected-items">Items:</label>
+                    <input type="text" th:field="${selected.itemsAdd}">
+                    <p class="explanation">"ItemId_1, ItemId_2... ItemId_n"</p>
+                </div>      
+    
+                <div class="show-field">
+                    <label for="selected-players">Players:</label>
+                    <input type="text" th:field="${selected.playersAdd}">
+                    <p class="explanation">"PlayerId_1, PlayerId_2... PlayerId_n"</p>
+                </div>
+    
+                <div class="show-field">
+                    <label for="selected-monster">Monster:</label>
+                    <input type="text" th:field="${selected.monsterAdd}">
+                    <p class="explanation">"MonsterID"</p>
+                </div>
+    
+                <div class="show-field">
+                    <label for="selected-exits">Exits</label>
+                    <input type="text" th:field="${selected.exitsAdd}">
+                    <p class="explanation">"ExitId_1, ExitId_2... ExitId_n"</p>
+                </div>
+    
+                <div class="edit-field">
+                    <button type="submit"> Guardar </button>
+                </div>
+            </form>
+            
 
+        </div>
+
+        
+    </div>
 
 </body>
 
