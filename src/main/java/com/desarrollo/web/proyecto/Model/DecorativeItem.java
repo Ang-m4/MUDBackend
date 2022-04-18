@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "Decorative_items")
 public class DecorativeItem {
     
-    @JsonIgnore
+   
     @Id
     @GeneratedValue
     private Long id;
@@ -26,6 +26,10 @@ public class DecorativeItem {
 
     public DecorativeItem(){
         locations = new HashSet<>();
+    }
+
+    public DecorativeItem(String name) {
+        this.name = name;  
     }
 
     public DecorativeItem(String name,Set<Room> locations) {

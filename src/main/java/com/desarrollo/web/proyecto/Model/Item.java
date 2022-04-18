@@ -13,12 +13,10 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-
 @Entity
 @Table(name = "Items")
 public class Item{
 
-    @JsonIgnore
     @Id
     @GeneratedValue
     private Long id;
@@ -30,9 +28,7 @@ public class Item{
     private String examine;
     private String wiki_url; 
 
-
-
-    
+    @JsonIgnore
     @ManyToMany(mappedBy = "backpack")
     private Set<Player> obtainedBy;
     
@@ -56,6 +52,16 @@ public class Item{
         this.obtainedBy = obtainedBy;
         this.locations = locations;
         
+    }
+
+    public Item(String name, String last_updated, int cost, int weight, String examine, String wiki_url) {
+        
+        this.name = name;
+        this.last_updated = last_updated;
+        this.cost = cost;
+        this.weight = weight;
+        this.examine = examine;
+        this.wiki_url = wiki_url;
     }
 
     public Long getId() {

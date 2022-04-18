@@ -1,6 +1,7 @@
 package com.desarrollo.web.proyecto.Controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.desarrollo.web.proyecto.Db.DecorativeItemRepository;
 import com.desarrollo.web.proyecto.Model.DecorativeItem;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @Controller
+@RestController
 @RequestMapping("/decoItem")
 
 public class DecoItemsController {
@@ -25,17 +28,25 @@ public class DecoItemsController {
     @Autowired
     DecorativeItemRepository decoItemRepository;
 
-
     Logger log = LoggerFactory.getLogger(getClass());
 
     @RequestMapping("/list")
-    String showItems(Model model){
+    List<DecorativeItem> showItems(Model model){
 
         ArrayList<DecorativeItem> decoItems = new ArrayList<>();
         decoItemRepository.findAll().forEach(decoItems::add);
 
         model.addAttribute("datos",decoItems);
-        return "decoitem-list";
+        return (List<DecorativeItem>) decoItemRepository.findAll();
+    }
+
+    @GetMapping("/show")
+    DecorativeItem showItem(Model model, @RequestParam Long id) {
+
+        DecorativeItem selected = decoItemRepository.findById(id).orElseThrow();
+        model.addAttribute("selected", selected);
+
+        return selected;
     }
 
 

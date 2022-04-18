@@ -21,7 +21,7 @@ public class Monster {
     
     @Id
     @GeneratedValue
-    @JsonIgnore
+  
     private Long id;
     
     private String name;
@@ -64,6 +64,22 @@ public class Monster {
         this.examine = examine;
         this.wiki_url = wiki_url;
         this.locations = locations;
+    }
+
+    
+    public Monster( String name, String last_updated, int attack_level, int defence_slash, int size,
+            int hitpoints, ArrayList<String> category, String examine, String wiki_url) {
+            
+        this.name = name;
+        this.last_updated = last_updated;
+        this.attack_level = attack_level;
+        this.defence_slash = defence_slash;
+        this.size = size;
+        this.hitpoints = hitpoints;
+        this.category = category;
+        this.examine = examine;
+        this.wiki_url = wiki_url;
+        
     }
 
     public Long getId() {

@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @Controller
+@RestController
 @RequestMapping("/item")
 public class ItemController {
 
@@ -23,20 +26,20 @@ public class ItemController {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @GetMapping("/list")
-    String showItems(Model model) {
-
+    List<Item> showItems(Model model) {
 
         model.addAttribute("datos",itemRepository.findAll());
-        return "item-list";
-    }
+        return (List<Item>) itemRepository.findAll();
+    }   
 
+    //http://localhost:8080/item/show?id=41
     @GetMapping("/show")
-    String showItem(Model model, @RequestParam Long id) {
+    Item showItem(Model model, @RequestParam Long id) {
 
         Item selected = itemRepository.findById(id).orElseThrow();
         model.addAttribute("selected", selected);
 
-        return "item-show";
+        return selected;
     }
 
     @GetMapping("/edit")
