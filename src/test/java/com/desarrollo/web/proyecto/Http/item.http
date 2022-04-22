@@ -1,14 +1,17 @@
 GET http://localhost:8080/item/list HTTP/1.1
 
 ###
-GET http://localhost:8080/item/11/show HTTP/1.1
+GET http://localhost:8080/item/11/get HTTP/1.1
+
+###
+POST http://localhost:8080/item/12/delete HTTP/1.1
 
 ### 
-GET http://localhost:8080/item/create HTTP/1.1
+POST http://localhost:8080/item/save HTTP/1.1
 Content-Type: application/json
 
 {
-  "id": 3,
+  "id": 11,
   "name": "THIS ONE WAS EDITED",
   "last_updated": "2022-09-24",
   "cost": 2,

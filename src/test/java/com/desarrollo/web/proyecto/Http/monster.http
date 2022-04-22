@@ -4,14 +4,14 @@ GET http://localhost:8080/monster/list HTTP/1.1
 GET http://localhost:8080/monster/18/get HTTP/1.1
 
 ###
-GET http://localhost:8080/monster/18/delete HTTP/1.1
+POST http://localhost:8080/monster/18/delete HTTP/1.1
 
 ###
 POST http://localhost:8080/monster/save HTTP/1.1
 Content-Type: application/json
 
 {
-  "id": 101,
+  "id": 18,
   "name": "Felpa",
   "last_updated": "2021-09-02",
   "attack_level": 1,
@@ -19,9 +19,9 @@ Content-Type: application/json
   "size": 2,
   "hitpoints": 90,
   "category": [
-    "Cat XXX",
-    "Cat XD",
-    "Cat DS"
+    "Cat Test",
+    "Cat TestA",
+    "Cat TestB"
   ],
   "examine": "A very smelly ghost.",
   "wiki_url": "https://oldschool.runescape.wiki/w/Aberrant_spectre"

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,22 +39,26 @@ public class RoomController {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @GetMapping("/list")
+    @CrossOrigin("http://localhost:4200")
     List<Room> listRooms() {
         return (List<Room>) roomRepository.findAll();
     }
 
     @GetMapping("/{id}/get")
+    @CrossOrigin("http://localhost:4200")
     Room getRoom(@PathVariable Long id) {
         Room selected = roomRepository.findById(id).orElseThrow();
         return selected;
     }
 
     @PostMapping("/save")
+    @CrossOrigin("http://localhost:4200")
     Room saveData(@ModelAttribute Room room) {
         return roomRepository.save(room);
     }
 
     @PostMapping("/{id}/delete")
+    @CrossOrigin("http://localhost:4200")
     void deleteRoom(@PathVariable Long id) {
         roomRepository.deleteById(id);
     }

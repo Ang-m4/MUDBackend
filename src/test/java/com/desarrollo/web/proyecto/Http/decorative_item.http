@@ -1,0 +1,16 @@
+GET http://localhost:8080/decoItem/list HTTP/1.1
+
+###
+GET http://localhost:8080/decoItem/5/get HTTP/1.1
+
+###
+POST http://localhost:8080/decoItem/1/delete HTTP/1.1
+
+### 
+POST http://localhost:8080/decoItem/save HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": 320,
+  "name": "Large door"
+}
