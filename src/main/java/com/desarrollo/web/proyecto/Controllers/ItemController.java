@@ -5,17 +5,19 @@ import com.desarrollo.web.proyecto.Model.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
-@Controller
 @RestController
 @RequestMapping("/item")
 public class ItemController {
@@ -26,54 +28,48 @@ public class ItemController {
     Logger log = LoggerFactory.getLogger(getClass());
 
     @GetMapping("/list")
-    List<Item> showItems(Model model) {
+    @CrossOrigin("http://localhost:4200")
+    List<Item> showItems(){
 
-        model.addAttribute("datos",itemRepository.findAll());
         return (List<Item>) itemRepository.findAll();
     }   
 
     //http://localhost:8080/item/show?id=41
-    @GetMapping("/show")
-    Item showItem(Model model, @RequestParam Long id) {
+    @GetMapping("/{id}/show")
+    @CrossOrigin("http://localhost:4200")
+    Item showItem(@PathVariable Long id) {
 
         Item selected = itemRepository.findById(id).orElseThrow();
-        model.addAttribute("selected", selected);
+        return selected;
 
+    }
+
+    @GetMapping("/{id}/edit")
+    @CrossOrigin("http://localhost:4200")
+    Item editItems(@PathVariable Long id) {
+
+        Item selected = itemRepository.findById(id).orElseThrow();
         return selected;
     }
 
-    @GetMapping("/edit")
-    String editItems(Model model, @RequestParam Long id) {
-
-        Item selected = itemRepository.findById(id).orElseThrow();
-        model.addAttribute("selected", selected);
-        
-        return "item-edit";
-    }
-
-    @GetMapping("/delete")
-    String deleteItem(Model model, @RequestParam Long id) {
+    @GetMapping("/{id}/delete")
+    @CrossOrigin("http://localhost:4200")
+    void deleteItem(@PathVariable Long id) {
 
         itemRepository.deleteById(id);
-
-        return "redirect:/item/list";
     }
 
-    @PostMapping("/save")
-    String saveData(@ModelAttribute Item item, Model model) {
+    @PostMapping("/{id}/save")
+    @CrossOrigin("http://localhost:4200")
+    Item saveData(@RequestBody Item item) {
 
-        
-        itemRepository.save(item);
-
-        return "redirect:/item/list";
+        return itemRepository.save(item);
     }
 
     @GetMapping("/create")
-    String createItem(Model model) {
-
-        model.addAttribute("newItem", new Item());
-        return "item-create";
-
+    @CrossOrigin("http://localhost:4200")
+    Item createItem(@RequestBody Item newItem) {
+        return itemRepository.save(newItem);
     }
 
 }

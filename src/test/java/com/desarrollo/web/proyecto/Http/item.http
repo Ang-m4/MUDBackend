@@ -1,0 +1,18 @@
+GET http://localhost:8080/item/list HTTP/1.1
+
+###
+GET http://localhost:8080/item/11/show HTTP/1.1
+
+### 
+GET http://localhost:8080/item/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "THIS ONE WAS EDITED",
+  "last_updated": "2022-09-24",
+  "cost": 2,
+  "weight": 3,
+  "examine": "The body of a Dwarf savaged by Goblins.",
+  "wiki_url": "https://oldschool.runescape.wiki/w/Dwarf_remains"
+}
