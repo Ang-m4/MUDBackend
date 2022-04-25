@@ -46,9 +46,9 @@ public class PlayerController {
         return playerRepository.save(player);
     }
 
-    @PostMapping("/delete")
+    @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
-    void deleteMonster(@RequestParam Long id){
+    void deleteMonster(@PathVariable Long id){
        playerRepository.deleteById(id);
     }
     

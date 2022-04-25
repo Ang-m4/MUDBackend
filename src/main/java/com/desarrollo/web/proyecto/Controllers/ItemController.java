@@ -41,10 +41,10 @@ public class ItemController {
         return itemRepository.save(item);
     }
 
-    @PostMapping("/{id}/delete")
+    @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
     void deleteItem(@PathVariable Long id) {
-        itemRepository.deleteById(id);
+        itemRepository.deleteById(id);  
     }
 
 }

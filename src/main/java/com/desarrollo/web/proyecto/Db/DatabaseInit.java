@@ -36,7 +36,7 @@ public class DatabaseInit implements ApplicationRunner{
         loadMonsters();
         
         //loadRooms();
-       // loadPlayers();
+        loadPlayers();
         
     }
     
@@ -115,8 +115,8 @@ public class DatabaseInit implements ApplicationRunner{
         pB.getCategory().add("Categoria Uno");
         pB.getCategory().add("Categoria Dos");
 
-        Item iA = itemRepo.findById(45l).orElseThrow();
-        Item iB = itemRepo.findById(48l).orElseThrow();
+        Item iA = itemRepo.findById(12l).orElseThrow();
+        Item iB = itemRepo.findById(14l).orElseThrow();
         
         playerRepo.save(pA);
         playerRepo.save(pB);
@@ -127,8 +127,8 @@ public class DatabaseInit implements ApplicationRunner{
         pB.getBackpack().add(iA);
         pB.getBackpack().add(iB);
 
-        pA.setLocation(roomRepo.findById(137l).orElseThrow());
-        pB.setLocation(roomRepo.findById(137l).orElseThrow());
+        //pA.setLocation(roomRepo.findById(137l).orElseThrow());
+        //pB.setLocation(roomRepo.findById(137l).orElseThrow());
 
         playerRepo.save(pA);
         playerRepo.save(pB);

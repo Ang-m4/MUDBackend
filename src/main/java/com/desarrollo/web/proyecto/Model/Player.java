@@ -54,7 +54,6 @@ public class Player {
     private Set<Item> backpack;
 
     @JsonIgnore
-    
     @ManyToOne
     @JoinColumn(name = "Room_id")
     private Room location;
@@ -70,7 +69,6 @@ public class Player {
     @Transient
     String categories;
 
-    
     public Player() {
         category = new ArrayList<>();
         backpack = new HashSet<>();

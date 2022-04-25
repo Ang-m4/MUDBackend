@@ -4,15 +4,15 @@ GET http://localhost:8080/monster/list HTTP/1.1
 GET http://localhost:8080/monster/18/get HTTP/1.1
 
 ###
-POST http://localhost:8080/monster/18/delete HTTP/1.1
+GET http://localhost:8080/monster/22/delete HTTP/1.1
 
 ###
 POST http://localhost:8080/monster/save HTTP/1.1
 Content-Type: application/json
 
 {
-  "id": 18,
-  "name": "Felpa",
+  "id": -1,
+  "name": "TEST",
   "last_updated": "2021-09-02",
   "attack_level": 1,
   "defence_slash": 20,

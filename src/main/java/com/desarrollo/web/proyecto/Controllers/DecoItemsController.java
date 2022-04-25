@@ -34,14 +34,14 @@ public class DecoItemsController {
         DecorativeItem selected = decoItemRepository.findById(id).orElseThrow();
         return selected;
     }
-
+    
     @PostMapping("/save")
     @CrossOrigin("http://localhost:4200")
     DecorativeItem saveData(@RequestBody DecorativeItem dItem) {
         return decoItemRepository.save(dItem);
     }
 
-    @PostMapping("/{id}/delete")
+    @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
     void deleteDecoItem(@PathVariable Long id) {
         decoItemRepository.deleteById(id);

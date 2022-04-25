@@ -35,13 +35,19 @@ public class MonsterController {
     }
 
     @PostMapping("/save")
+    @CrossOrigin("http://localhost:4200")
     Monster saveData(@RequestBody Monster newMonster) {
         return monsterRepository.save(newMonster);
     }
 
-    @PostMapping("/{id}/delete")
-    void deleteMonster(@PathVariable Long id) {
+    @GetMapping("/{id}/delete")
+    @CrossOrigin("http://localhost:4200")
+    int deleteMonster(@PathVariable Long id) {
+        
+        log.info("TRIED");
         monsterRepository.deleteById(id);
+
+        return 1;
     }
 
 }
