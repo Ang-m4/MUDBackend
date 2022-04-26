@@ -47,13 +47,14 @@ public class Room {
     @JoinColumn(name = "monster_id")
     private Monster monster;
 
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "location", orphanRemoval = true)
     private List<Player> players;
 
     @ManyToMany
     @JoinTable(name = "Exits", joinColumns = @JoinColumn(name = "Room_id"), inverseJoinColumns = @JoinColumn(name = "Exit_id"))
     private Set<Room> exits;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "Exits", joinColumns = @JoinColumn(name = "Exit_id"), inverseJoinColumns = @JoinColumn(name = "Room_id"))
     @Transient

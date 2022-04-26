@@ -34,9 +34,10 @@ public class DatabaseInit implements ApplicationRunner{
         loadDecoItems();
         loadItems();
         loadMonsters();
-        
-        //loadRooms();
         loadPlayers();
+
+        loadRooms();    
+        
         
     }
     
@@ -117,12 +118,14 @@ public class DatabaseInit implements ApplicationRunner{
 
         Item iA = itemRepo.findById(12l).orElseThrow();
         Item iB = itemRepo.findById(14l).orElseThrow();
-        
+        Item iC = itemRepo.findById(15l).orElseThrow();
+
         playerRepo.save(pA);
         playerRepo.save(pB);
 
         pA.getBackpack().add(iA);
         pA.getBackpack().add(iB);
+        pA.getBackpack().add(iC);
 
         pB.getBackpack().add(iA);
         pB.getBackpack().add(iB);
@@ -140,30 +143,48 @@ public class DatabaseInit implements ApplicationRunner{
         Room rA = new Room();
         
         rA.setName("ROOM_1");
-
         roomRepo.save(rA);
-        Item iA = itemRepo.findById(45l).orElseThrow();
+
+        Item iA = itemRepo.findById(15l).orElseThrow();
+        Item iB = itemRepo.findById(14l).orElseThrow();
+        rA.getItems().add(iA);
+        rA.getItems().add(iB);
+       
+        
         DecorativeItem diA = decoItemRepo.findById(2l).orElseThrow();
         DecorativeItem diB = decoItemRepo.findById(3l).orElseThrow();
-        Monster mA = monsterRepo.findById(130l).orElseThrow();
-        rA.getItems().add(iA);
+       
+        Player player = playerRepo.findById(29l).orElseThrow();
+
         rA.getDecorativeItems().add(diA);
         rA.getDecorativeItems().add(diB);
-        rA.setMonster(mA);
+
+        player.setLocation(rA);
+        rA.getPlayers().add(player);
         roomRepo.save(rA);
+
+        //Monster mA = monsterRepo.findById(130l).orElseThrow();
+        //rA.getItems().add(iA);
+       // rA.getDecorativeItems().add(diA);
+        //rA.getDecorativeItems().add(diB);
+        //rA.setMonster(mA);
+       // roomRepo.save(rA);
+
         Room rB = new Room();
         rB.setName("ROOM_2");
         roomRepo.save(rB);
-        Item iB = itemRepo.findById(46l).orElseThrow();
-        DecorativeItem diC = decoItemRepo.findById(7l).orElseThrow();
-        DecorativeItem diD = decoItemRepo.findById(5l).orElseThrow();
-        Monster mB = monsterRepo.findById(131l).orElseThrow();
-        rB.getItems().add(iB);
-        rB.getDecorativeItems().add(diC);
-        rB.getDecorativeItems().add(diD);
-        rB.setMonster(mB);
-        rB.getExits().add(rA);
-        roomRepo.save(rB);
+
+        //Item iB = itemRepo.findById(19l).orElseThrow();
+        //DecorativeItem diC = decoItemRepo.findById(7l).orElseThrow();
+        //DecorativeItem diD = decoItemRepo.findById(5l).orElseThrow();
+        //Monster mB = monsterRepo.findById(131l).orElseThrow();
+        //rB.getItems().add(iB);
+        //rB.getDecorativeItems().add(diC);
+        //rB.getDecorativeItems().add(diD);
+       // rB.setMonster(mB);
+        //rB.getExits().add(rA);
+
+
 
     }
 
