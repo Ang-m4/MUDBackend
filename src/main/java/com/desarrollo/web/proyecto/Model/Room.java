@@ -48,9 +48,10 @@ public class Room {
     private Monster monster;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "location",cascade = CascadeType.ALL ,orphanRemoval = true)
+    @OneToMany( mappedBy = "location",cascade = CascadeType.ALL ,orphanRemoval = true)
     private List<Player> players;
 
+    
     @ManyToMany
     @JoinTable(name = "Exits", joinColumns = @JoinColumn(name = "Room_id"), inverseJoinColumns = @JoinColumn(name = "Exit_id"))
     private Set<Room> exits;

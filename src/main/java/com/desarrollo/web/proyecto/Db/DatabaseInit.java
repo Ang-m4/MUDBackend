@@ -109,7 +109,7 @@ public class DatabaseInit implements ApplicationRunner{
         pB.setName("Bob");
         pB.setAttack_level(20);
         pB.setSize(20);
-
+        
         pA.getCategory().add("Categoria Uno");
         pA.getCategory().add("Categoria Dos");
 
@@ -168,7 +168,7 @@ public class DatabaseInit implements ApplicationRunner{
 
         //Monster mA = monsterRepo.findById(130l).orElseThrow();
         //rA.getItems().add(iA);
-       // rA.getDecorativeItems().add(diA);
+        // rA.getDecorativeItems().add(diA);
         //rA.getDecorativeItems().add(diB);
         //rA.setMonster(mA);
        // roomRepo.save(rA);
@@ -184,10 +184,8 @@ public class DatabaseInit implements ApplicationRunner{
         //rB.getItems().add(iB);
         //rB.getDecorativeItems().add(diC);
         //rB.getDecorativeItems().add(diD);
-       // rB.setMonster(mB);
+        // rB.setMonster(mB);
         //rB.getExits().add(rA);
-
-
 
     }
 

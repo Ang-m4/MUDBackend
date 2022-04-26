@@ -53,8 +53,8 @@ public class Player {
     )
     private Set<Item> backpack;
 
-    @ManyToOne
-    @JoinColumn(name = "Room_id")
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "Room_id",nullable = true)
     private Room location;
 
     Long maxWeight;
