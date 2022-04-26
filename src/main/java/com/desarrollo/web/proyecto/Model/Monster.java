@@ -45,7 +45,7 @@ public class Monster {
     @JsonIgnore
     @Transient
     String categories;
-
+    
     public Monster (){
         this.category = new ArrayList<>();
         this.locations = new ArrayList<>();

@@ -142,15 +142,16 @@ public class DatabaseInit implements ApplicationRunner{
 
         Room rA = new Room();
         
-        rA.setName("ROOM_1");
+        rA.setName("ROOM_4");
         roomRepo.save(rA);
 
         Item iA = itemRepo.findById(15l).orElseThrow();
         Item iB = itemRepo.findById(14l).orElseThrow();
         rA.getItems().add(iA);
         rA.getItems().add(iB);
+
+        Monster monster = monsterRepo.findById(19l).orElseThrow();
        
-        
         DecorativeItem diA = decoItemRepo.findById(2l).orElseThrow();
         DecorativeItem diB = decoItemRepo.findById(3l).orElseThrow();
        
@@ -161,6 +162,8 @@ public class DatabaseInit implements ApplicationRunner{
 
         player.setLocation(rA);
         rA.getPlayers().add(player);
+
+        rA.setMonster(monster);
         roomRepo.save(rA);
 
         //Monster mA = monsterRepo.findById(130l).orElseThrow();
@@ -171,7 +174,7 @@ public class DatabaseInit implements ApplicationRunner{
        // roomRepo.save(rA);
 
         Room rB = new Room();
-        rB.setName("ROOM_2");
+        rB.setName("ROOM_3");
         roomRepo.save(rB);
 
         //Item iB = itemRepo.findById(19l).orElseThrow();

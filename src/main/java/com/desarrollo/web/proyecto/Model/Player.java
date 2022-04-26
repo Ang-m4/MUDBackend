@@ -53,7 +53,6 @@ public class Player {
     )
     private Set<Item> backpack;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Room_id")
     private Room location;

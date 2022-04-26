@@ -55,13 +55,12 @@ public class RoomController {
     @CrossOrigin("http://localhost:4200")
     Room saveData(@RequestBody Room room) {
 
-
         return roomRepository.save(room);
     }
-
+    
     @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
-    void deleteRoom(@PathVariable Long id) {
+    void deleteRoom(@PathVariable Long id){
         roomRepository.deleteById(id);
     }
 

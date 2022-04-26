@@ -47,7 +47,8 @@ public class Room {
     @JoinColumn(name = "monster_id")
     private Monster monster;
 
-    @OneToMany(mappedBy = "location", orphanRemoval = true)
+    @JsonIgnore
+    @OneToMany(mappedBy = "location",cascade = CascadeType.ALL ,orphanRemoval = true)
     private List<Player> players;
 
     @ManyToMany
@@ -75,7 +76,7 @@ public class Room {
     @JsonIgnore
     @Transient
     String monsterAdd;
-
+    
     @JsonIgnore
     @Transient
     String exitsAdd;
@@ -165,20 +166,15 @@ public class Room {
     public String getDecoItemsAdd() {
 
         if(decorativeItems.size() != 0){
-
             String retorno = "";
-
             for(DecorativeItem item: decorativeItems){
-
                 retorno = retorno + item.getId() + ",";
             }
-
             return retorno;
-
         }
-
         return decoItemsAdd;
     }
+
 
     public void setDecoItemsAdd(String decoItemsAdd) {
         this.decoItemsAdd = decoItemsAdd;
@@ -187,14 +183,12 @@ public class Room {
     public String getItemsAdd() {
 
         if(items.size() != 0){
-
             String retorno = "";
             for(Item item: items){
                 retorno = retorno + item.getId() + ",";
             }
             return retorno;
         }
-        
         return itemsAdd;
     }
 
@@ -206,7 +200,6 @@ public class Room {
     public String getPlayersAdd() {
 
         if(players.size() != 0){
-
             String retorno = "";
             for(Player item: players){
                 retorno = retorno + item.getId() + ",";
