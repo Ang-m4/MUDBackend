@@ -1,11 +1,17 @@
 package com.desarrollo.web.proyecto.Controllers;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import com.desarrollo.web.proyecto.Db.DecorativeItemRepository;
 import com.desarrollo.web.proyecto.Db.ItemRepository;
 import com.desarrollo.web.proyecto.Db.MonsterRepository;
 import com.desarrollo.web.proyecto.Db.PlayerRepository;
 import com.desarrollo.web.proyecto.Db.RoomRepository;
 import com.desarrollo.web.proyecto.Model.*;
+
+import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +47,10 @@ public class RoomController {
     @GetMapping("/list")
     @CrossOrigin("http://localhost:4200")
     List<Room> listRooms() {
+
+
+
+
         return (List<Room>) roomRepository.findAll();
     }
 
@@ -53,9 +63,24 @@ public class RoomController {
 
     @PostMapping("/save")
     @CrossOrigin("http://localhost:4200")
-    Room saveData(@RequestBody Room room) {
+    Boolean saveData(@RequestBody Room room) {
 
-        return roomRepository.save(room);
+        Room saved = room;
+        //roomRepository.save(room);
+        //El error esta en el guardado de los datos redundantes en el repositorio.
+        Set<Room> exits = new HashSet<Room>();
+
+        for(Room r : saved.getExits()){
+            
+            exits.add(new Room(r.getId(),r.getName()));
+            
+        }
+
+        saved.setExits(exits);
+
+  
+
+        return false;
     }
     
     @GetMapping("/{id}/delete")
