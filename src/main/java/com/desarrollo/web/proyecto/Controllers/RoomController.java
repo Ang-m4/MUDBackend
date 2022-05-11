@@ -76,8 +76,14 @@ public class RoomController {
     @CrossOrigin("http://localhost:4200")
     Room saveData(@RequestBody Room room) {
 
+        if(room.getMonster().getName().isEmpty()){
+            room.setMonster(null);
+        }
+        
         Room saved = roomRepository.save(room);
         resolveRedundancy(saved);
+
+    
         return saved;
     }
     
