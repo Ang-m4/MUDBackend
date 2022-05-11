@@ -48,45 +48,55 @@ public class RoomController {
     @CrossOrigin("http://localhost:4200")
     List<Room> listRooms() {
 
+        List<Room> found = (List<Room>) roomRepository.findAll();
 
+        for(Room r : found){
+            resolveRedundancy(r);
+        }
 
-
-        return (List<Room>) roomRepository.findAll();
+        return found;
     }
 
     @GetMapping("/{id}/get")
     @CrossOrigin("http://localhost:4200")
     Room getRoom(@PathVariable Long id) {
+
         Room selected = roomRepository.findById(id).orElseThrow();
+        resolveRedundancy(selected);
         return selected;
     }
 
-    @PostMapping("/save")
-    @CrossOrigin("http://localhost:4200")
-    Boolean saveData(@RequestBody Room room) {
-
-        Room saved = room;
-        //roomRepository.save(room);
-        //El error esta en el guardado de los datos redundantes en el repositorio.
-        Set<Room> exits = new HashSet<Room>();
-
-        for(Room r : saved.getExits()){
-            
-            exits.add(new Room(r.getId(),r.getName()));
-            
-        }
-
-        saved.setExits(exits);
-
-  
-
-        return false;
-    }
-    
     @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
     void deleteRoom(@PathVariable Long id){
         roomRepository.deleteById(id);
     }
+
+    @PostMapping("/save")
+    @CrossOrigin("http://localhost:4200")
+    Room saveData(@RequestBody Room room) {
+
+        Room saved = roomRepository.save(room);
+        resolveRedundancy(saved);
+        return saved;
+    }
+    
+    
+    public void resolveRedundancy(Room selected){
+
+        Set<Room> exits = new HashSet<Room>();
+
+        for(Room r : selected.getExits()){
+
+            Room aux = new Room();
+            aux.setName(r.getName());
+            aux.setId(r.getId());
+            
+            exits.add(aux); 
+        }
+
+        selected.setExits(exits);
+    }
+
 
 }

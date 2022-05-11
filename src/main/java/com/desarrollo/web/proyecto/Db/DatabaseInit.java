@@ -35,9 +35,7 @@ public class DatabaseInit implements ApplicationRunner{
         loadItems();
         loadMonsters();
         loadPlayers();
-
         loadRooms();    
-        
         
     }
     
