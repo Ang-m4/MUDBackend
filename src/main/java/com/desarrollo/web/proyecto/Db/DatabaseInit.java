@@ -36,7 +36,6 @@ public class DatabaseInit implements ApplicationRunner{
         loadMonsters();
         loadPlayers();
         loadRooms();    
-        
     }
     
     void loadDecoItems(){
@@ -128,9 +127,6 @@ public class DatabaseInit implements ApplicationRunner{
         pB.getBackpack().add(iA);
         pB.getBackpack().add(iB);
 
-        //pA.setLocation(roomRepo.findById(137l).orElseThrow());
-        //pB.setLocation(roomRepo.findById(137l).orElseThrow());
-
         playerRepo.save(pA);
         playerRepo.save(pB);
         
@@ -153,16 +149,14 @@ public class DatabaseInit implements ApplicationRunner{
         DecorativeItem diA = decoItemRepo.findById(2l).orElseThrow();
         DecorativeItem diB = decoItemRepo.findById(3l).orElseThrow();
        
-        Player player = playerRepo.findById(29l).orElseThrow();
-
         rA.getDecorativeItems().add(diA);
         rA.getDecorativeItems().add(diB);
 
-        player.setLocation(rA);
-        rA.getPlayers().add(player);
-
         rA.setMonster(monster);
         roomRepo.save(rA);
+
+        Player p = playerRepo.findById(30l).orElseThrow();
+
 
         //Monster mA = monsterRepo.findById(130l).orElseThrow();
         //rA.getItems().add(iA);

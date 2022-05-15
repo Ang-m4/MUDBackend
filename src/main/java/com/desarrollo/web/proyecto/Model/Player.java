@@ -69,6 +69,7 @@ public class Player {
     String categories;
 
     public Player() {
+        
         category = new ArrayList<>();
         backpack = new HashSet<>();
     }

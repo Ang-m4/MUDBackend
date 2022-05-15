@@ -1,5 +1,5 @@
 package com.desarrollo.web.proyecto.Controllers;
-import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,7 +11,6 @@ import com.desarrollo.web.proyecto.Db.PlayerRepository;
 import com.desarrollo.web.proyecto.Db.RoomRepository;
 import com.desarrollo.web.proyecto.Model.*;
 
-import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/room")
 public class RoomController {
-    
+
     @Autowired
     ItemRepository itemRepository;
 
@@ -49,11 +48,9 @@ public class RoomController {
     List<Room> listRooms() {
 
         List<Room> found = (List<Room>) roomRepository.findAll();
-
-        for(Room r : found){
+        for (Room r : found) {
             resolveRedundancy(r);
         }
-
         return found;
     }
 
@@ -68,7 +65,7 @@ public class RoomController {
 
     @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
-    void deleteRoom(@PathVariable Long id){
+    void deleteRoom(@PathVariable Long id) {
         roomRepository.deleteById(id);
     }
 
@@ -76,33 +73,31 @@ public class RoomController {
     @CrossOrigin("http://localhost:4200")
     Room saveData(@RequestBody Room room) {
 
-        if(room.getMonster().getName().isEmpty()){
-            room.setMonster(null);
+        if (room.getMonster() != null) {
+
+            if (room.getMonster().getName().isEmpty()) {
+                room.setMonster(null);
+            }
         }
-        
+
         Room saved = roomRepository.save(room);
         resolveRedundancy(saved);
 
-    
         return saved;
     }
-    
-    
-    public void resolveRedundancy(Room selected){
+
+    public void resolveRedundancy(Room selected) {
 
         Set<Room> exits = new HashSet<Room>();
-
-        for(Room r : selected.getExits()){
+        for (Room r : selected.getExits()) {
 
             Room aux = new Room();
             aux.setName(r.getName());
             aux.setId(r.getId());
-            
-            exits.add(aux); 
+            exits.add(aux);
         }
 
         selected.setExits(exits);
     }
-
 
 }
