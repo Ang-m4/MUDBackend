@@ -81,12 +81,12 @@ public class IntegrationMonsterTests {
 
         Long id = 2l;
 
-        Monster editDecoMonster = new Monster("Aberrant spectre edited");
-        editDecoMonster.setId(2l);
+        Monster editMonster = new Monster("Aberrant spectre edited");
+        editMonster.setId(2l);
 
         this.rest.postForObject(
                 "http://localhost:" + port + "/monster/save",
-                editDecoMonster,
+                editMonster,
                 Monster.class);
 
         Monster monster = this.rest.getForObject("http://localhost:" + port + "/monster/" + id + "/get",

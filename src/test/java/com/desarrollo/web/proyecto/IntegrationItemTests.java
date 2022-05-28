@@ -82,12 +82,12 @@ public class IntegrationItemTests {
 
         Long id = 2l;
 
-        Item editDecoItem = new Item("Toolkit edited");
-        editDecoItem.setId(2l);
+        Item editItem = new Item("Toolkit edited");
+        editItem.setId(2l);
 
         this.rest.postForObject(
                 "http://localhost:" + port + "/item/save",
-                editDecoItem,
+                editItem,
                 Item.class);
 
         Item decoItem = this.rest.getForObject("http://localhost:" + port + "/item/" + id + "/get",

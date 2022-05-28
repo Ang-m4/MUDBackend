@@ -85,12 +85,12 @@ public class IntegrationPlayerTests {
 
         Long id = 2l;
 
-        Player editDecoMonster = new Player("Bob edited");
-        editDecoMonster.setId(2l);
+        Player editPlayer = new Player("Bob edited");
+        editPlayer.setId(2l);
 
         this.rest.postForObject(
                 "http://localhost:" + port + "/player/save",
-                editDecoMonster,
+                editPlayer,
                 Player.class);
 
         Player player = this.rest.getForObject("http://localhost:" + port + "/player/" + id + "/get",

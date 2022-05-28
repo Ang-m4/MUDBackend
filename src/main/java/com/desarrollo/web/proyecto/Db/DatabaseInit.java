@@ -35,9 +35,6 @@ public class DatabaseInit implements ApplicationRunner{
 
     @Autowired
     RoomRepository roomRepo;
-
-    /// se ejecuta una sola vez al inicio de la aplicacion.
-     
      
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -46,8 +43,8 @@ public class DatabaseInit implements ApplicationRunner{
         loadDecoItems();
         loadItems();
         loadMonsters();
-        // loadPlayers();
-        // loadRooms();    
+        loadPlayers();
+        loadRooms();    
     }
     
     void loadDecoItems() {
@@ -131,48 +128,15 @@ public class DatabaseInit implements ApplicationRunner{
 
     void loadRooms(){
 
-        Room rA = new Room();
-        
-        rA.setName("ROOM_4");
-        roomRepo.save(rA);
+        Room roomA = new Room();
+        roomA.setName("Room A");
+        roomRepo.save(roomA);
 
-        Item iA = itemRepo.findById(15l).orElseThrow();
-        Item iB = itemRepo.findById(14l).orElseThrow();
-        rA.getItems().add(iA);
-        rA.getItems().add(iB);
+        Room roomB = new Room();
+        roomB.setName("Room B");
+        roomRepo.save(roomB);
 
-        Monster monster = monsterRepo.findById(19l).orElseThrow();
-       
-        DecorativeItem diA = decoItemRepo.findById(2l).orElseThrow();
-        DecorativeItem diB = decoItemRepo.findById(3l).orElseThrow();
-       
-        rA.getDecorativeItems().add(diA);
-        rA.getDecorativeItems().add(diB);
-
-        rA.setMonster(monster);
-        roomRepo.save(rA);
-
-        //Monster mA = monsterRepo.findById(130l).orElseThrow();
-        //rA.getItems().add(iA);
-        // rA.getDecorativeItems().add(diA);
-        //rA.getDecorativeItems().add(diB);
-        //rA.setMonster(mA);
-       // roomRepo.save(rA);
-
-        Room rB = new Room();
-        rB.setName("ROOM_3");
-        roomRepo.save(rB);
-
-        //Item iB = itemRepo.findById(19l).orElseThrow();
-        //DecorativeItem diC = decoItemRepo.findById(7l).orElseThrow();
-        //DecorativeItem diD = decoItemRepo.findById(5l).orElseThrow();
-        //Monster mB = monsterRepo.findById(131l).orElseThrow();
-        //rB.getItems().add(iB);
-        //rB.getDecorativeItems().add(diC);
-        //rB.getDecorativeItems().add(diD);
-        // rB.setMonster(mB);
-        //rB.getExits().add(rA);
-
+    
     }
 
 }
