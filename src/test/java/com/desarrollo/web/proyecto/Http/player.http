@@ -1,7 +1,0 @@
-GET http://localhost:8080/player/list HTTP/1.1
-
-###
-GET http://localhost:8080/player/29/get HTTP/1.1
-
-###
-GET http://localhost:8080/player/29/delete HTTP/1.1

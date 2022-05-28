@@ -14,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "Decorative_items")
 public class DecorativeItem {
     
-   
     @Id
     @GeneratedValue
     private Long id;

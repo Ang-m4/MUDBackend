@@ -1,15 +1,24 @@
 package com.desarrollo.web.proyecto.Db;
 
 import com.desarrollo.web.proyecto.Model.DecorativeItem;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.desarrollo.web.proyecto.Model.*;
 
 @Component
+@Profile("develop")
 public class DatabaseInit implements ApplicationRunner{
 
     @Autowired
@@ -28,46 +37,52 @@ public class DatabaseInit implements ApplicationRunner{
     RoomRepository roomRepo;
 
     /// se ejecuta una sola vez al inicio de la aplicacion.
+     
+     
     @Override
     public void run(ApplicationArguments args) throws Exception {
         
+       
         loadDecoItems();
         loadItems();
         loadMonsters();
-        loadPlayers();
-        loadRooms();    
+        // loadPlayers();
+        // loadRooms();    
     }
     
-    void loadDecoItems(){
+    void loadDecoItems() {
 
-        List<DecorativeItem> itemList = new ArrayList<>();
+        List<DecorativeItem> decorativeItems = new ArrayList<DecorativeItem>();
 
-        itemList.add(new DecorativeItem("Crate"));
-        itemList.add(new DecorativeItem("Cave Entrance"));
-        itemList.add(new DecorativeItem("Prison Door"));
-        itemList.add(new DecorativeItem("Door"));
-        itemList.add(new DecorativeItem("Large door"));
-        itemList.add(new DecorativeItem("Crate"));
-        itemList.add(new DecorativeItem("Giant crystal"));
-        itemList.add(new DecorativeItem("Vine"));
-        itemList.add(new DecorativeItem("Door"));
-        itemList.add(new DecorativeItem("Stairs"));
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+                decorativeItems = objectMapper.readValue(
+                new File("Assets/objetos-decorativos.json"), 
+                new TypeReference<List<DecorativeItem>>(){});
 
-        decoItemRepo.saveAll(itemList);
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+    
+
+        decoItemRepo.saveAll(decorativeItems);
     }
 
     void loadItems() {
         
 		List<Item> itemList = new ArrayList<>();
 
-        itemList.add(new Item("Dwarf remains","2022-09-24",2,3,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
-        itemList.add(new Item("Toolkit","2021-09-4",2,33,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
-        itemList.add(new Item("Cannonball","2021-2-24",23,31,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
-        itemList.add(new Item("Nulodion's notes","2021-09-24",4,32,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
-        itemList.add(new Item("Ammo mould","2021-09-2",6,35,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
-        itemList.add(new Item("Instruction manual","2021-09-24",2,32,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
-        itemList.add(new Item( "Cannon barrels","2020-09-24",2,3,"The body of a Dwarf savaged by Goblins.", "https://oldschool.runescape.wiki/w/Dwarf_remains"));
-        
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+                itemList = objectMapper.readValue(
+                new File("Assets/items.json"), 
+                new TypeReference<List<Item>>(){});
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        } 
         itemRepo.saveAll(itemList);
         
 	}
@@ -75,22 +90,16 @@ public class DatabaseInit implements ApplicationRunner{
     void loadMonsters(){
   
 		List<Monster> monsterList = new ArrayList<>();
-        ArrayList<String> catego = new ArrayList<>();
-        catego.add("Cat A");
-        catego.add("Cat B");
-        catego.add("Cat C");
-        monsterList.add(new Monster("Aberrant spectre","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster("Nechryael","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster( "Death spawn","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster( "An evil death spawn.","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster("Zombie","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster("Summoned Zombie","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster("Ghost","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster("The living dead","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster("Rock Crab","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster("Molanisk","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        monsterList.add(new Monster( "Skeleton Mage","2021-09-02",1,20,2,90,catego,"A very smelly ghost.","https://oldschool.runescape.wiki/w/Aberrant_spectre"));
-        
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+                monsterList = objectMapper.readValue(
+                new File("Assets/monstruos.json"), 
+                new TypeReference<List<Monster>>(){});
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
         monsterRepo.saveAll(monsterList);
 
     }
@@ -102,30 +111,21 @@ public class DatabaseInit implements ApplicationRunner{
         pA.setAttack_level(30);
         pA.setSize(30);
         
+        pA.setWeight(0l);
+        pA.setMaxWeight(100l);
         Player pB = new Player();
         pB.setName("Bob");
         pB.setAttack_level(20);
         pB.setSize(20);
-        
+
+        pB.setWeight(0l);
+        pB.setMaxWeight(100l);
         pA.getCategory().add("Categoria Uno");
         pA.getCategory().add("Categoria Dos");
 
         pB.getCategory().add("Categoria Uno");
         pB.getCategory().add("Categoria Dos");
 
-        Item iA = itemRepo.findById(12l).orElseThrow();
-        Item iB = itemRepo.findById(14l).orElseThrow();
-        Item iC = itemRepo.findById(15l).orElseThrow();
-
-        playerRepo.save(pA);
-        playerRepo.save(pB);
-
-        pA.getBackpack().add(iA);
-        pA.getBackpack().add(iB);
-        pA.getBackpack().add(iC);
-
-        pB.getBackpack().add(iA);
-        pB.getBackpack().add(iB);
 
         playerRepo.save(pA);
         playerRepo.save(pB);
@@ -154,9 +154,6 @@ public class DatabaseInit implements ApplicationRunner{
 
         rA.setMonster(monster);
         roomRepo.save(rA);
-
-        Player p = playerRepo.findById(30l).orElseThrow();
-
 
         //Monster mA = monsterRepo.findById(130l).orElseThrow();
         //rA.getItems().add(iA);
