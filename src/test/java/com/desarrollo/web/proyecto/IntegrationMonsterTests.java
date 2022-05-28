@@ -96,4 +96,13 @@ public class IntegrationMonsterTests {
 
     }
 
+    @Test
+    void deleteMonsterTest() {
+
+        String message = this.rest.getForObject(
+                "http://localhost:" + port + "/monster/1/delete", String.class);
+
+        assertEquals("monster deleted", message);
+
+    }
 }

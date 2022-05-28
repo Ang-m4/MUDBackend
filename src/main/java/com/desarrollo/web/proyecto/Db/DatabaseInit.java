@@ -110,22 +110,19 @@ public class DatabaseInit implements ApplicationRunner{
         pA.setName("Alice");
         pA.setAttack_level(30);
         pA.setSize(30);
-        
         pA.setWeight(0l);
         pA.setMaxWeight(100l);
+        pA.getCategory().add("Categoria Uno");
+        pA.getCategory().add("Categoria Dos");
+
         Player pB = new Player();
         pB.setName("Bob");
         pB.setAttack_level(20);
         pB.setSize(20);
-
         pB.setWeight(0l);
         pB.setMaxWeight(100l);
-        pA.getCategory().add("Categoria Uno");
-        pA.getCategory().add("Categoria Dos");
-
         pB.getCategory().add("Categoria Uno");
         pB.getCategory().add("Categoria Dos");
-
 
         playerRepo.save(pA);
         playerRepo.save(pB);
