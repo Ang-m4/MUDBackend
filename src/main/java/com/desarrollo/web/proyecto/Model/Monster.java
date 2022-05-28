@@ -50,6 +50,11 @@ public class Monster {
         this.category = new ArrayList<>();
         this.locations = new ArrayList<>();
     }    
+    public Monster (String name){
+        this.name = name;
+        this.category = new ArrayList<>();
+        this.locations = new ArrayList<>();
+    }    
 
     public Monster( String name, String last_updated, int attack_level, int defence_slash, int size,
             int hitpoints, ArrayList<String> category, String examine, String wiki_url,ArrayList<Room> locations) {

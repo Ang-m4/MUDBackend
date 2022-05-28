@@ -42,12 +42,12 @@ public class MonsterController {
 
     @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
-    int deleteMonster(@PathVariable Long id) {
+    String deleteMonster(@PathVariable Long id) {
         
         log.info("TRIED");
         monsterRepository.deleteById(id);
 
-        return 1;
+        return "monster deleted";
     }
 
 }

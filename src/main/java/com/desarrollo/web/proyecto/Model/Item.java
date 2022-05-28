@@ -41,6 +41,12 @@ public class Item{
         locations = new HashSet<>();
     }
 
+    public Item(String name){
+        this.name = name;
+        obtainedBy = new HashSet<>();
+        locations = new HashSet<>();
+    }
+
     public Item(String name, String last_updated, int cost, int weight, String examine, String wiki_url,Set<Player> obtainedBy,Set<Room> locations) {
         
         this.name = name;

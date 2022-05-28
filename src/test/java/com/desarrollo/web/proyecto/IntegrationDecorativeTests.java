@@ -2,10 +2,14 @@ package com.desarrollo.web.proyecto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.desarrollo.web.proyecto.Db.DecorativeItemRepository;
-
 import com.desarrollo.web.proyecto.Model.DecorativeItem;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +20,12 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ActiveProfiles;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @ActiveProfiles("integrationtest")
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-class IntegrationTests {
+class IntegrationDecorativeTests {
 
 	@LocalServerPort
 	private int port;
@@ -34,18 +39,28 @@ class IntegrationTests {
 	@BeforeEach
 	void init() {
 
-		this.decorativeItemRepository.save(new DecorativeItem("Deco test A"));
-		this.decorativeItemRepository.save(new DecorativeItem("Deco test B"));
-		this.decorativeItemRepository.save(new DecorativeItem("Deco test C"));
+		ObjectMapper objectMapper = new ObjectMapper();
+        List<DecorativeItem> itemList = new ArrayList<>();
+        try {
+            itemList = objectMapper.readValue(
+                    new File("Assets/objetosTest.json"),
+                    new TypeReference<List<DecorativeItem>>() {
+                    });
 
-	}
+        } catch (IOException e) {
 
+            e.printStackTrace();
+        }
+
+        decorativeItemRepository.saveAll(itemList);
+    }
+	
 	@Test
 	void getTest() {
 
 		DecorativeItem decoItem = this.rest.getForObject("http://localhost:" + port + "/decoItem/3/get",
 				DecorativeItem.class);
-		assertEquals("Deco test C", decoItem.getName());
+		assertEquals("Door", decoItem.getName());
 
 	}
 
@@ -66,7 +81,7 @@ class IntegrationTests {
 
 		Long id = 2l;
 
-		DecorativeItem editDecoItem = new DecorativeItem("Deco Test B edited");
+		DecorativeItem editDecoItem = new DecorativeItem("Cave Entrance edited");
 		editDecoItem.setId(2l);
 
 		this.rest.postForObject(
@@ -77,7 +92,7 @@ class IntegrationTests {
 		DecorativeItem decoItem = this.rest.getForObject("http://localhost:" + port + "/decoItem/" + id + "/get",
 				DecorativeItem.class);
 
-		assertEquals("Deco Test B edited", decoItem.getName());
+		assertEquals("Cave Entrance edited", decoItem.getName());
 
 	}
 

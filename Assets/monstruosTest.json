@@ -1,0 +1,138 @@
+[
+    {
+      "id": 1,
+      "name": "Molanisk",
+      "last_updated": "2021-09-02",
+      "attack_level": 40,
+      "defence_slash": 45,
+      "size": 1,
+      "hitpoints": 52,
+      "category": [
+        "molanisks"
+      ],
+      "examine": "A strange mole-like being.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Molanisk"
+    },
+    {
+      "id": 2,
+      "name": "Aberrant spectre",
+      "last_updated": "2021-09-02",
+      "attack_level": 1,
+      "defence_slash": 20,
+      "size": 2,
+      "hitpoints": 90,
+      "category": [
+        "aberrant spectres"
+      ],
+      "examine": "A very smelly ghost.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Aberrant_spectre"
+    },
+    {
+      "id": 3,
+      "name": "Nechryael",
+      "last_updated": "2021-09-24",
+      "attack_level": 97,
+      "defence_slash": 20,
+      "size": 1,
+      "hitpoints": 105,
+      "category": [
+        "nechryael"
+      ],
+      "examine": "An evil death demon.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Nechryael#Normal"
+    },
+    {
+      "id": 4,
+      "name": "Death spawn",
+      "last_updated": "2021-08-05",
+      "attack_level": 67,
+      "defence_slash": 20,
+      "size": 1,
+      "hitpoints": 60,
+      "category": [],
+      "examine": "An evil death spawn.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Death_spawn"
+    },
+    {
+      "id": 5,
+      "name": "Zombie",
+      "last_updated": "2021-09-02",
+      "attack_level": 8,
+      "defence_slash": 0,
+      "size": 1,
+      "hitpoints": 22,
+      "category": [
+        "zombies"
+      ],
+      "examine": "Dead man walking.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Zombie#Level_13"
+    },
+    {
+      "id": 6,
+      "name": "Summoned Zombie",
+      "last_updated": "2021-07-12",
+      "attack_level": 8,
+      "defence_slash": 0,
+      "size": 1,
+      "hitpoints": 22,
+      "category": [
+        "zombies"
+      ],
+      "examine": "The living dead.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Summoned_Zombie"
+    },
+    {
+      "id": 7,
+      "name": "Skeleton",
+      "last_updated": "2021-09-02",
+      "attack_level": 15,
+      "defence_slash": 5,
+      "size": 1,
+      "hitpoints": 29,
+      "category": [
+        "skeletons"
+      ],
+      "examine": "Could do with gaining a few pounds.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Skeleton#Level_22"
+    },
+    {
+      "id": 8,
+      "name": "Skeleton Mage",
+      "last_updated": "2021-08-05",
+      "attack_level": 14,
+      "defence_slash": 0,
+      "size": 1,
+      "hitpoints": 17,
+      "category": [
+        "skeletons"
+      ],
+      "examine": "An undead worker of dark magic.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Skeleton_Mage#Level_16"
+    },
+    {
+      "id": 9,
+      "name": "Ghost",
+      "last_updated": "2021-08-05",
+      "attack_level": 13,
+      "defence_slash": 5,
+      "size": 1,
+      "hitpoints": 25,
+      "category": [
+        "ghosts"
+      ],
+      "examine": "Eeek! A ghost!",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Ghost#Level_19"
+    },
+    {
+      "id": 10,
+      "name": "Rock Crab",
+      "last_updated": "2021-09-02",
+      "attack_level": 1,
+      "defence_slash": 0,
+      "size": 1,
+      "hitpoints": 50,
+      "category": [],
+      "examine": "No one likes crabs...",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Rock_Crab#Active"
+    }
+]

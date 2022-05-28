@@ -1,0 +1,11 @@
+[{ "id": "1", "name": "Crate" },
+    { "id": "2", "name": "Cave Entrance" },
+    { "id": "3", "name": "Door" },
+    { "id": "4", "name": "Broken multicannon" },
+    { "id": "5", "name": "Dwarf multicannon" },
+    { "id": "6", "name": "Cannon base" },
+    { "id": "7", "name": "Cannon stand" },
+    { "id": "8", "name": "Cannon barrels" },
+    { "id": "9", "name": "Ladder" },
+    { "id": "10", "name": "Rock pile" }
+]

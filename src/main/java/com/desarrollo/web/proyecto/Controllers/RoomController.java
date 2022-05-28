@@ -65,8 +65,9 @@ public class RoomController {
 
     @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
-    void deleteRoom(@PathVariable Long id) {
+    String deleteRoom(@PathVariable Long id) {
         roomRepository.deleteById(id);
+        return "room deleted";
     }
 
     @PostMapping("/save")

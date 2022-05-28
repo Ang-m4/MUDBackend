@@ -43,8 +43,9 @@ public class ItemController {
 
     @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
-    void deleteItem(@PathVariable Long id) {
+    String deleteItem(@PathVariable Long id) {
         itemRepository.deleteById(id);  
+        return "item deleted";
     }
 
 }

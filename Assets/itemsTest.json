@@ -1,0 +1,47 @@
+[
+    {
+      "id": 1,
+      "name": "Dwarf remains",
+      "last_updated": "2021-09-24",
+      "cost": 1,
+      "weight": 16,
+      "examine": "The body of a Dwarf savaged by Goblins.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Dwarf_remains"
+    },
+    {
+      "id": 2,
+      "name": "Toolkit",
+      "last_updated": "2021-08-05",
+      "cost": 1,
+      "weight": 0.453,
+      "examine": "Good for repairing broken cannons.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Toolkit"
+    },
+    {
+      "id": 3,
+      "name": "Cannonball",
+      "last_updated": "2021-08-05",
+      "cost": 5,
+      "weight": 0,
+      "examine": "Ammo for the Dwarf Cannon.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Cannonball"
+    },
+    {
+      "id": 4,
+      "name": "Nulodion's notes",
+      "last_updated": "2021-08-05",
+      "cost": 1,
+      "weight": 0.028,
+      "examine": "Construction notes for Dwarf cannon ammo.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Nulodion's_notes"
+    },
+    {
+      "id": 5,
+      "name": "Ammo mould",
+      "last_updated": "2021-08-05",
+      "cost": 5,
+      "weight": 4.535,
+      "examine": "Used to make cannon ammunition.",
+      "wiki_url": "https://oldschool.runescape.wiki/w/Ammo_mould"
+    }
+]

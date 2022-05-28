@@ -73,6 +73,11 @@ public class Player {
         category = new ArrayList<>();
         backpack = new HashSet<>();
     }
+    public Player(String name) {
+        this.name = name;
+        category = new ArrayList<>();
+        backpack = new HashSet<>();
+    }
 
     public Player(String name, String last_updated, int attack_level, int defence_slash, int size,
             int hitpoints, List<String> category, String examine, String wiki_url, Set<Item> backpack,

@@ -66,8 +66,9 @@ public class PlayerController {
 
     @GetMapping("/{id}/delete")
     @CrossOrigin("http://localhost:4200")
-    void deleteMonster(@PathVariable Long id){
+    String deleteMonster(@PathVariable Long id){
        playerRepository.deleteById(id);
+       return "player deleted";
     }
     
     public void resolveRedundancy(Room selected){

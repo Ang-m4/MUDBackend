@@ -89,6 +89,14 @@ public class Room {
         this.exits = new HashSet<>();
     }
 
+    public Room(String name) {
+        this.name = name;
+        this.decorativeItems = new HashSet<>();
+        this.items = new HashSet<>();
+        this.players = new ArrayList<>();
+        this.exits = new HashSet<>();
+    }
+
     public Room(Long id, String name) {
         this.decorativeItems = new HashSet<>();
         this.items = new HashSet<>();
