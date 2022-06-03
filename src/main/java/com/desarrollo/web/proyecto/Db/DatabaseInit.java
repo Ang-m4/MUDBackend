@@ -18,7 +18,7 @@ import java.util.List;
 import com.desarrollo.web.proyecto.Model.*;
 
 @Component
-@Profile("develop")
+@Profile("dataload")
 public class DatabaseInit implements ApplicationRunner{
 
     @Autowired
@@ -39,12 +39,14 @@ public class DatabaseInit implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
         
-       
         loadDecoItems();
         loadItems();
         loadMonsters();
+        
         loadPlayers();
-        loadRooms();    
+        loadRooms();   
+        
+        System.exit(0);
     }
     
     void loadDecoItems() {
@@ -97,6 +99,7 @@ public class DatabaseInit implements ApplicationRunner{
 
             e.printStackTrace();
         }
+        
         monsterRepo.saveAll(monsterList);
 
     }

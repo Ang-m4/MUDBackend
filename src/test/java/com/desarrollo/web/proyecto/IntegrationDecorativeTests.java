@@ -51,7 +51,7 @@ class IntegrationDecorativeTests {
 
             e.printStackTrace();
         }
-
+		
         decorativeItemRepository.saveAll(itemList);
     }
 	
@@ -60,6 +60,7 @@ class IntegrationDecorativeTests {
 
 		DecorativeItem decoItem = this.rest.getForObject("http://localhost:" + port + "/decoItem/3/get",
 				DecorativeItem.class);
+
 		assertEquals("Door", decoItem.getName());
 
 	}
@@ -80,7 +81,6 @@ class IntegrationDecorativeTests {
 	void editTest() {
 
 		Long id = 2l;
-
 		DecorativeItem editDecoItem = new DecorativeItem("Cave Entrance edited");
 		editDecoItem.setId(2l);
 
@@ -105,11 +105,5 @@ class IntegrationDecorativeTests {
 		assertEquals("item deleted", message);
 
 	}
-
-
-	
-
-
-
 
 }
